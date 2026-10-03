@@ -1,0 +1,1247 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102742">
+  <meta name="description" content="Dashboard due diligence untuk menilai project sales ecosystem Scientex Jenjarom semasa pertemuan agensi.">
+  <title>Scientex Jenjarom | Meeting Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --navy: #102742;
+      --navy-deep: #0b1d32;
+      --blue: #1769aa;
+      --blue-soft: #e8f2fb;
+      --ink: #172b40;
+      --muted: #64758a;
+      --paper: #f2f5f8;
+      --surface: #fff;
+      --line: #dce4ec;
+      --green: #197349;
+      --green-soft: #e7f4ed;
+      --amber: #98620a;
+      --amber-soft: #fff3d8;
+      --red: #b33b3b;
+      --red-soft: #fff0ee;
+      --radius: 5px;
+      --sidebar: 244px;
+      --header: 70px;
+      --font: 'Manrope', 'Segoe UI', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header) + 20px); }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 14px/1.55 var(--font); -webkit-font-smoothing: antialiased; }
+    button, input, select, textarea { font: inherit; }
+    button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+    button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid #80b6e2; outline-offset: 2px; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; }
+    .app-header { position: sticky; z-index: 20; top: 0; display: flex; min-height: var(--header); align-items: center; justify-content: space-between; gap: 18px; padding: 10px 26px; background: var(--navy-deep); color: #fff; box-shadow: 0 4px 16px rgba(11,29,50,.14); }
+    .brand { display: flex; align-items: center; gap: 13px; min-width: 0; }
+    .brand-mark { display: grid; width: 37px; height: 37px; flex: 0 0 37px; place-items: center; border: 1px solid rgba(184,213,241,.45); border-radius: 4px; color: #b5d8f6; font-size: 11px; font-weight: 800; letter-spacing: .08em; }
+    .brand-copy { display: grid; line-height: 1.3; }
+    .brand-copy strong { font-size: 11px; letter-spacing: .12em; }
+    .brand-copy span { color: #a6b7c9; font-size: 9px; font-weight: 600; letter-spacing: .06em; }
+    .header-actions { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
+    .header-button { display: inline-flex; min-height: 37px; align-items: center; justify-content: center; gap: 8px; padding: 0 12px; border: 1px solid rgba(188,211,235,.33); border-radius: 4px; background: transparent; color: #edf5fd; font-size: 10px; font-weight: 800; letter-spacing: .04em; transition: background .2s,border-color .2s; }
+    .header-button:hover, .header-button[aria-pressed="true"] { border-color: #80b6e2; background: rgba(128,182,226,.14); }
+    .header-button--primary { border-color: #7eb5e2; background: #1a629b; }
+    .header-button--primary:hover { background: #2475b4; }
+    .header-button--quiet { color: #bac8d7; }
+    .header-icon { font-size: 14px; line-height: 1; }
+    .button-short { display: none; }
+    .shell { display: grid; min-height: calc(100vh - var(--header)); grid-template-columns: var(--sidebar) minmax(0,1fr); }
+    .sidebar { position: sticky; top: var(--header); display: flex; height: calc(100vh - var(--header)); flex-direction: column; overflow-y: auto; padding: 22px 15px 18px; border-right: 1px solid var(--line); background: var(--surface); }
+    .sidebar-heading { margin: 0 10px 9px; color: #8391a1; font-size: 9px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+    .section-nav { display: grid; gap: 3px; }
+    .section-nav a { display: grid; min-height: 35px; align-items: center; grid-template-columns: 25px 1fr; gap: 4px; padding: 5px 9px; border-left: 2px solid transparent; border-radius: 0 3px 3px 0; color: #586a7e; font-size: 10px; font-weight: 700; transition: color .15s,background .15s,border-color .15s; }
+    .section-nav a span { color: #98a6b4; font-size: 9px; font-weight: 800; }
+    .section-nav a:hover { background: #f1f6fa; color: var(--blue); }
+    .section-nav a[aria-current="location"] { border-left-color: var(--blue); background: var(--blue-soft); color: var(--navy); }
+    .section-nav a[aria-current="location"] span { color: var(--blue); }
+    .progress-box { margin: auto 5px 0; padding: 15px 11px 4px; border-top: 1px solid var(--line); }
+    .progress-meta { display: flex; justify-content: space-between; gap: 8px; color: var(--muted); font-size: 9px; font-weight: 700; }
+    .progress-meta strong { color: var(--navy); }
+    .progress-track { height: 5px; overflow: hidden; margin-top: 9px; border-radius: 9px; background: #e6edf3; }
+    .progress-fill { width: 0; height: 100%; border-radius: inherit; background: var(--blue); transition: width .25s ease; }
+    .autosave { display: flex; align-items: center; gap: 7px; margin: 12px 0 0; color: #718196; font-size: 9px; }
+    .autosave::before { width: 7px; height: 7px; border-radius: 50%; background: #4f9c78; content: ''; }
+    .main-content { min-width: 0; padding: 30px clamp(20px,3.2vw,48px) 70px; }
+    .content-width { width: min(1160px,100%); margin-inline: auto; }
+    .page-intro { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: end; gap: 30px; margin: 2px 0 24px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 9px; color: var(--blue); font-size: 9px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+    .eyebrow::before { width: 17px; height: 1px; background: currentColor; content: ''; }
+    h1,h2,h3,p { margin-top: 0; }
+    h1 { margin-bottom: 8px; color: var(--navy); font-size: clamp(28px,3vw,40px); font-weight: 800; letter-spacing: -.04em; line-height: 1.12; }
+    .intro-copy { max-width: 690px; margin: 0; color: var(--muted); font-size: 13px; }
+    .intro-ref { display: flex; align-items: center; gap: 8px; padding-bottom: 5px; color: #718196; font-size: 9px; font-weight: 800; letter-spacing: .08em; white-space: nowrap; }
+    .intro-ref b { color: var(--navy); }
+    .meeting-meta { display: grid; grid-template-columns: 1fr 1.3fr 1.1fr 1fr; gap: 10px; margin: 18px 0 20px; padding: 15px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+    .field { display: grid; align-content: start; gap: 5px; min-width: 0; }
+    .field label, .field-label { color: #596b7e; font-size: 9px; font-weight: 800; letter-spacing: .06em; }
+    .field input, .field select, .field textarea, .data-input, .data-select, .data-textarea { width: 100%; min-width: 0; min-height: 36px; padding: 8px 9px; border: 1px solid #d5dfe8; border-radius: 3px; background: #fff; color: var(--ink); font-size: 11px; }
+    .field textarea, .data-textarea { min-height: 76px; resize: vertical; }
+    input::placeholder, textarea::placeholder { color: #9aa8b7; }
+    input[type="number"] { font-variant-numeric: tabular-nums; }
+    input[type="checkbox"] { width: 15px; height: 15px; flex: 0 0 15px; margin: 0; accent-color: var(--blue); }
+    .objective-panel { margin-bottom: 20px; padding: 20px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+    .panel-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; margin-bottom: 15px; }
+    .panel-heading h2 { margin: 0; color: var(--navy); font-size: 16px; font-weight: 800; letter-spacing: -.02em; }
+    .panel-heading p { max-width: 600px; margin: 4px 0 0; color: var(--muted); font-size: 10px; }
+    .objective-cards { display: grid; grid-template-columns: repeat(6,minmax(0,1fr)); gap: 8px; }
+    .objective-card { display: flex; min-height: 74px; flex-direction: column; justify-content: space-between; gap: 9px; padding: 11px 12px; border: 1px solid var(--line); border-radius: 3px; background: #fbfcfd; transition: border-color .18s,background .18s,transform .18s; }
+    .objective-card:hover { transform: translateY(-2px); border-color: #9bc0df; background: var(--blue-soft); }
+    .objective-card span { color: #8c9aab; font-size: 8px; font-weight: 800; }
+    .objective-card strong { color: var(--navy); font-size: 10px; letter-spacing: .04em; }
+    .meeting-prompt { display: flex; align-items: center; gap: 12px; margin: 0 0 20px; padding: 13px 16px; border-left: 3px solid var(--blue); background: #eaf2f8; color: #304a64; font-size: 12px; font-weight: 700; }
+    .meeting-prompt span { color: var(--blue); font-size: 17px; }
+    .dashboard-section { margin: 0 0 13px; scroll-margin-top: calc(var(--header) + 12px); }
+    .section-details { overflow: clip; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+    .section-summary { display: flex; min-height: 65px; align-items: center; gap: 13px; padding: 13px 18px; cursor: pointer; list-style: none; }
+    .section-summary::-webkit-details-marker { display: none; }
+    .section-summary::after { width: 8px; height: 8px; flex: 0 0 8px; margin-left: auto; border-right: 1.5px solid #718196; border-bottom: 1.5px solid #718196; content: ''; transform: rotate(45deg) translateY(-2px); transition: transform .18s; }
+    .section-details[open] > .section-summary::after { transform: rotate(225deg) translate(-2px,-1px); }
+    .section-index { display: grid; width: 32px; height: 32px; flex: 0 0 32px; place-items: center; border: 1px solid #cbdceb; border-radius: 4px; background: #f3f8fc; color: var(--blue); font-size: 9px; font-weight: 800; }
+    .section-title { display: grid; gap: 2px; }
+    .section-title strong { color: var(--navy); font-size: 13px; font-weight: 800; }
+    .section-title small { color: #8190a0; font-size: 9px; }
+    .section-body { padding: 3px 20px 21px; border-top: 1px solid #edf1f4; }
+    .section-body > .section-note:first-child { margin-top: 15px; }
+    .section-note { margin: 0 0 15px; color: var(--muted); font-size: 10px; }
+    .subheading { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin: 20px 0 10px; color: var(--navy); font-size: 11px; font-weight: 800; letter-spacing: .04em; }
+    .subheading:first-child { margin-top: 14px; }
+    .subheading small { color: #8896a5; font-size: 9px; font-weight: 600; letter-spacing: 0; }
+    .field-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 11px; }
+    .field-grid--2 { grid-template-columns: repeat(2,minmax(0,1fr)); }
+    .field-grid--4 { grid-template-columns: repeat(4,minmax(0,1fr)); }
+    .field-grid--wide { grid-template-columns: repeat(2,minmax(0,1fr)); }
+    .field--span-2 { grid-column: span 2; }
+    .field--full { grid-column: 1 / -1; }
+    .source-row { display: grid; grid-template-columns: minmax(0,1fr) 160px; align-items: end; gap: 11px; }
+    .source-tag { display: inline-flex; align-items: center; gap: 6px; color: #8694a3; font-size: 9px; }
+    .source-tag::before { width: 6px; height: 6px; border-radius: 50%; background: var(--amber); content: ''; }
+    .table-wrap { width: 100%; overflow-x: auto; border: 1px solid var(--line); border-radius: 3px; }
+    table { width: 100%; border-collapse: collapse; text-align: left; }
+    th { padding: 9px 9px; background: #f3f6f9; color: #6c7c8d; font-size: 8px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; white-space: nowrap; }
+    td { padding: 7px 8px; border-top: 1px solid #edf1f4; vertical-align: middle; }
+    td:first-child { color: var(--navy); font-size: 10px; font-weight: 800; white-space: nowrap; }
+    .table-wrap input:not([type="checkbox"]), .table-wrap select { min-width: 90px; min-height: 32px; padding: 6px 7px; border: 1px solid #d9e2ea; border-radius: 3px; background: #fff; color: var(--ink); font-size: 10px; }
+    .table-wrap input[type="number"] { width: 100px; }
+    .table-wrap input[type="text"] { width: 130px; }
+    .table-wrap td:has(input[type="checkbox"]) { text-align: center; }
+    .choice-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 7px; }
+    .choice { display: flex; min-height: 37px; align-items: center; gap: 8px; padding: 7px 9px; border: 1px solid var(--line); border-radius: 3px; background: #fff; color: #40556b; font-size: 10px; }
+    .choice:hover { border-color: #a8c5de; }
+    .funnel { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; }
+    .funnel-stage { position: relative; display: grid; grid-template-columns: 28px minmax(0,1fr); gap: 8px; padding: 11px; border: 1px solid var(--line); border-radius: 3px; background: #fcfdfe; }
+    .funnel-number { display: grid; width: 25px; height: 25px; place-items: center; border-radius: 50%; background: #e9f2f9; color: var(--blue); font-size: 9px; font-weight: 800; }
+    .funnel-stage-main { min-width: 0; }
+    .funnel-stage-main strong { display: block; margin: 2px 0 7px; color: var(--navy); font-size: 9px; letter-spacing: .04em; }
+    .funnel-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+    .funnel-inputs label { display: grid; gap: 3px; color: #7b8998; font-size: 8px; }
+    .funnel-inputs input { width: 100%; min-width: 0; min-height: 29px; padding: 5px; border: 1px solid #dbe3ea; border-radius: 3px; font-size: 10px; }
+    .funnel-rate { grid-column: 2; padding-top: 5px; color: var(--blue); font-size: 8px; font-weight: 800; }
+    .question-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 6px 14px; }
+    .question-row { display: grid; grid-template-columns: minmax(0,1fr) 110px; align-items: center; gap: 9px; min-height: 37px; padding-bottom: 6px; border-bottom: 1px solid #edf1f4; }
+    .question-row label { color: #43576d; font-size: 10px; }
+    .question-row select { min-height: 30px; padding: 5px 7px; border: 1px solid #d8e1e9; border-radius: 3px; background: #fff; color: #334a60; font-size: 9px; }
+    .metric-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 8px; margin-top: 12px; }
+    .metric-card { min-height: 74px; padding: 11px 12px; border: 1px solid var(--line); border-radius: 3px; background: #f9fbfd; }
+    .metric-card span { display: block; color: #77879a; font-size: 8px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+    .metric-card strong { display: block; margin-top: 7px; color: var(--navy); font-size: 17px; font-weight: 800; font-variant-numeric: tabular-nums; }
+    .metric-card small { color: #8290a0; font-size: 8px; }
+    .metric-card--green strong { color: var(--green); }
+    .metric-card--amber strong { color: var(--amber); }
+    .metric-card--red strong { color: var(--red); }
+    .inline-metrics { display: flex; flex-wrap: wrap; gap: 7px; margin: 12px 0; }
+    .inline-metric { display: inline-flex; align-items: center; gap: 7px; padding: 7px 9px; border: 1px solid var(--line); border-radius: 3px; background: #f9fbfd; color: #65768a; font-size: 9px; }
+    .inline-metric strong { color: var(--navy); font-size: 11px; font-variant-numeric: tabular-nums; }
+    .freshness { display: inline-flex; min-height: 25px; align-items: center; gap: 7px; padding: 4px 9px; border: 1px solid #d8e1e8; border-radius: 20px; background: #f5f7f9; color: #6d7c8b; font-size: 9px; font-weight: 800; }
+    .freshness::before { width: 7px; height: 7px; border-radius: 50%; background: #9aa6b2; content: ''; }
+    .freshness[data-level="green"] { border-color: #b9deca; background: var(--green-soft); color: var(--green); }
+    .freshness[data-level="green"]::before { background: #30805a; }
+    .freshness[data-level="amber"] { border-color: #f0d69e; background: var(--amber-soft); color: var(--amber); }
+    .freshness[data-level="amber"]::before { background: #c1861b; }
+    .freshness[data-level="red"] { border-color: #efc2bc; background: var(--red-soft); color: var(--red); }
+    .freshness[data-level="red"]::before { background: #bd4b43; }
+    .budget-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 9px; }
+    .calc-strip { display: flex; flex-wrap: wrap; align-items: center; gap: 9px 20px; margin: 13px 0; padding: 12px 14px; border: 1px solid #cfe0ee; border-radius: 3px; background: #f0f6fb; }
+    .calc-strip span { color: #65788b; font-size: 9px; }
+    .calc-strip strong { color: var(--navy); font-size: 13px; font-variant-numeric: tabular-nums; }
+    .calc-strip .insufficient { color: var(--amber); font-size: 10px; }
+    .checklist { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 6px 12px; }
+    .check-item { display: flex; align-items: flex-start; gap: 8px; min-height: 31px; padding: 6px 8px; border: 1px solid transparent; border-radius: 3px; color: #465a70; font-size: 10px; }
+    .check-item:hover { background: #f6f9fb; }
+    .red-flag-list .check-item:has(input:checked) { border-color: #f0c9c4; background: var(--red-soft); color: #8e3430; }
+    .red-flag-list input { accent-color: var(--red); }
+    .verify-list { margin: 14px 0 0; padding: 13px 15px; border-left: 3px solid #d68d3b; background: #fff8e9; }
+    .verify-list h3 { margin: 0 0 6px; color: #86570e; font-size: 10px; letter-spacing: .05em; }
+    .verify-list ul { display: flex; flex-wrap: wrap; gap: 5px 18px; margin: 0; padding-left: 17px; color: #795b2c; font-size: 9px; }
+    .evidence-table input[type="text"] { width: 100%; min-width: 120px; }
+    .evidence-table td:first-child { min-width: 170px; white-space: normal; }
+    .evidence-status { color: #8a6b2f; font-size: 9px; font-weight: 800; }
+    .benchmark-table th:first-child { width: 155px; }
+    .benchmark-table td:first-child { white-space: normal; }
+    .benchmark-table input { width: 100%; }
+    .decision-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; }
+    .decision-card { display: grid; gap: 7px; padding: 11px; border: 1px solid var(--line); border-radius: 3px; background: #fff; }
+    .decision-card label { color: var(--navy); font-size: 9px; font-weight: 800; letter-spacing: .05em; }
+    .decision-card select { min-height: 32px; padding: 6px; border: 1px solid #d9e2ea; border-radius: 3px; background: #fff; font-size: 9px; }
+    .decision-card textarea { min-height: 50px; padding: 7px; border: 1px solid #d9e2ea; border-radius: 3px; font-size: 9px; resize: vertical; }
+    .decision-card:has(option[value="support"]:checked) { border-top: 2px solid var(--green); }
+    .decision-card:has(option[value="more"]:checked) { border-top: 2px solid #d49a30; }
+    .decision-card:has(option[value="risk"]:checked) { border-top: 2px solid var(--red); }
+    .decision-groups { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; margin-top: 15px; }
+    .analysis-box { min-height: 110px; padding: 13px; border: 1px solid var(--line); border-radius: 3px; background: #fbfcfd; }
+    .analysis-box h3 { display: flex; align-items: center; gap: 7px; margin: 0 0 9px; color: var(--navy); font-size: 10px; }
+    .analysis-box h3::before { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); content: ''; }
+    .analysis-box ul { display: grid; gap: 5px; margin: 0; padding-left: 16px; color: #66788b; font-size: 9px; }
+    .analysis-box li::marker { color: #78a5c9; }
+    .analysis-box .empty { color: #8a98a7; font-size: 9px; }
+    .analysis-box--risk h3::before { background: var(--red); }
+    .analysis-box--amber h3::before { background: #d29526; }
+    .analysis-box--green h3::before { background: #38815e; }
+    .analysis-disclaimer { margin: 11px 0 0; color: #8794a2; font-size: 8px; }
+    .action-row { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 5px 12px; }
+    .add-row { min-height: 31px; padding: 4px 9px; border: 1px solid #cad9e5; border-radius: 3px; background: #fff; color: var(--blue); font-size: 9px; font-weight: 800; }
+    .add-row:hover { background: var(--blue-soft); }
+    .remove-row { width: 29px; height: 29px; border: 1px solid #e2d1cf; border-radius: 3px; background: #fff; color: #a14b42; font-size: 15px; }
+    .remove-row:hover { background: var(--red-soft); }
+    .meeting-controls { display: none; justify-content: space-between; gap: 10px; margin: 0 0 14px; padding: 11px 13px; border: 1px solid #c9d9e7; border-radius: 4px; background: #edf5fb; }
+    .meeting-controls.is-visible { display: flex; }
+    .meeting-controls span { align-self: center; color: #4d647a; font-size: 10px; font-weight: 800; }
+    .meeting-controls button { min-height: 32px; padding: 0 10px; border: 1px solid #c2d4e4; border-radius: 3px; background: #fff; color: var(--navy); font-size: 9px; font-weight: 800; }
+    .meeting-controls button:disabled { opacity: .45; cursor: not-allowed; }
+    .footer-note { padding: 20px 0 0; color: #8693a0; font-size: 9px; text-align: center; }
+    .toast { position: fixed; z-index: 40; right: 22px; bottom: 20px; max-width: min(380px,calc(100% - 32px)); padding: 11px 15px; border: 1px solid #c8d9e7; border-radius: 4px; background: #fff; color: var(--navy); box-shadow: 0 7px 28px rgba(13,39,64,.13); font-size: 10px; opacity: 0; pointer-events: none; transform: translateY(8px); transition: opacity .2s,transform .2s; }
+    .toast.is-visible { opacity: 1; transform: translateY(0); }
+    .meeting-mode .dashboard-section:not(.is-active) { display: none; }
+    .meeting-mode .dashboard-section.is-active .section-details { border-color: #b7ccdd; box-shadow: 0 4px 17px rgba(20,57,90,.05); }
+    @media (max-width: 1160px) {
+      :root { --sidebar: 208px; }
+      .objective-cards { grid-template-columns: repeat(3,minmax(0,1fr)); }
+      .field-grid--4, .budget-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .funnel { grid-template-columns: repeat(3,minmax(0,1fr)); }
+    }
+    @media (max-width: 820px) {
+      :root { --sidebar: 0px; --header: 64px; }
+      .app-header { padding: 8px 14px; }
+      .brand-copy span { display: none; }
+      .header-actions { gap: 5px; }
+      .header-button { min-height: 34px; padding-inline: 8px; font-size: 9px; }
+      .header-button--quiet { display: none; }
+      .shell { display: block; }
+      .sidebar { position: sticky; z-index: 15; top: var(--header); display: block; width: 100%; height: auto; overflow: visible; padding: 7px 10px; border-right: 0; border-bottom: 1px solid var(--line); }
+      .sidebar-heading, .progress-box { display: none; }
+      .section-nav { display: flex; overflow-x: auto; gap: 4px; scrollbar-width: thin; }
+      .section-nav a { display: flex; min-height: 34px; flex: 0 0 auto; gap: 6px; padding: 5px 9px; border: 1px solid transparent; border-radius: 3px; white-space: nowrap; }
+      .section-nav a[aria-current="location"] { border-color: #c7daea; }
+      .main-content { padding: 20px 16px 50px; }
+      .page-intro { grid-template-columns: 1fr; gap: 10px; }
+      .intro-ref { padding: 0; }
+      .meeting-meta { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .field-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .question-list { grid-template-columns: 1fr; }
+      .metric-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .decision-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+    }
+    @media (max-width: 520px) {
+      .brand { gap: 8px; }
+      .brand-mark { width: 31px; height: 31px; flex-basis: 31px; font-size: 9px; }
+      .brand-copy strong { font-size: 9px; }
+      .header-button { width: 35px; padding: 0; overflow: hidden; font-size: 0; }
+      #meetingModeButton { width: auto; min-width: 50px; padding-inline: 6px; }
+      #meetingModeButton .button-short { display: inline; font-size: 8px; }
+      #exportButton .header-icon, #printButton .header-icon { font-size: 15px; }
+      #exportButton .header-button-label, #printButton .header-button-label { display: none; }
+      .header-button--primary { width: 35px; padding: 0; }
+      .main-content { padding-inline: 12px; }
+      h1 { font-size: 29px; }
+      .meeting-meta { padding: 11px; gap: 8px; }
+      .objective-panel { padding: 14px; }
+      .objective-cards { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .section-summary { min-height: 58px; gap: 9px; padding-inline: 12px; }
+      .section-body { padding-inline: 12px; }
+      .field-grid, .field-grid--2, .field-grid--wide, .field-grid--4, .budget-grid { grid-template-columns: 1fr; }
+      .field--span-2, .field--full { grid-column: auto; }
+      .source-row { grid-template-columns: 1fr; }
+      .choice-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .funnel { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .checklist, .action-row, .decision-grid, .decision-groups { grid-template-columns: 1fr; }
+      .question-row { grid-template-columns: minmax(0,1fr) 102px; }
+      .metric-grid { gap: 6px; }
+      .metric-card { padding: 9px; }
+      .metric-card strong { font-size: 15px; }
+      .section-title strong { font-size: 11px; }
+      .section-title small { font-size: 8px; }
+      .meeting-prompt { align-items: flex-start; font-size: 11px; }
+      .meeting-controls { align-items: center; }
+      .meeting-controls span { text-align: center; }
+    }
+    @media print {
+      :root { --header: 0px; }
+      body { background: #fff; color: #111; font-size: 9pt; }
+      .app-header, .sidebar, .header-actions, .meeting-controls, .add-row, .remove-row, .footer-note, .toast { display: none !important; }
+      .shell { display: block; min-height: 0; }
+      .main-content { padding: 0; }
+      .content-width { width: 100%; }
+      .page-intro { margin-top: 0; }
+      .dashboard-section { display: block !important; break-inside: avoid; margin-bottom: 8px; }
+      .section-details { overflow: visible; border-color: #cbd3db; break-inside: avoid; }
+      .section-details:not([open]) > .section-body { display: block; }
+      .section-summary { min-height: 38px; padding: 5px 10px; }
+      .section-summary::after { display: none; }
+      .section-body { padding: 5px 10px 10px; }
+      .meeting-meta, .objective-panel, .section-details, .analysis-box, .metric-card { box-shadow: none; }
+      input, select, textarea { border-color: #bbc4cd !important; color: #111 !important; }
+      .table-wrap { overflow: visible; }
+      table { font-size: 7pt; }
+      th, td { padding: 4px; }
+      .analysis-box { min-height: auto; }
+      .analysis-box ul { color: #333; }
+      .meeting-prompt { padding: 7px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <a class="brand" href="#top" aria-label="Meeting Intelligence, ke bahagian atas">
+      <span class="brand-mark" aria-hidden="true">MI</span>
+      <span class="brand-copy"><strong>MEETING INTELLIGENCE</strong><span>PROPERTY PROJECT CONSULTANT DUE DILIGENCE</span></span>
+    </a>
+    <div class="header-actions" aria-label="Tindakan dashboard">
+      <button class="header-button" id="meetingModeButton" type="button" aria-label="Meeting Mode" aria-pressed="false" title="Fokus satu seksyen pada satu masa"><span class="button-full">MEETING MODE</span><span class="button-short">MEET</span></button>
+      <button class="header-button header-button--primary" id="exportButton" type="button" aria-label="Export ringkasan" title="Muat turun ringkasan dalam format JSON"><span class="header-icon" aria-hidden="true">↓</span><span class="header-button-label">EXPORT RINGKASAN</span></button>
+      <button class="header-button" id="printButton" type="button" aria-label="Cetak" title="Cetak atau simpan sebagai PDF"><span class="header-icon" aria-hidden="true">⎙</span><span class="header-button-label">CETAK</span></button>
+      <button class="header-button header-button--quiet" id="resetButton" type="button" title="Kosongkan semua data mesyuarat">RESET</button>
+    </div>
+  </header>
+
+  <div class="shell" id="top">
+    <aside class="sidebar" aria-label="Navigasi dashboard">
+      <p class="sidebar-heading">Navigasi mesyuarat</p>
+      <nav class="section-nav" id="sectionNav">
+        <a href="#objective"><span>00</span>Objektif</a>
+        <a href="#project"><span>01</span>Project</a>
+        <a href="#leads"><span>02</span>Lead engine</a>
+        <a href="#crm"><span>03</span>CRM &amp; sales system</a>
+        <a href="#project-data"><span>04</span>Data project</a>
+        <a href="#marketing"><span>05</span>Marketing</a>
+        <a href="#team"><span>06</span>Team &amp; support</a>
+        <a href="#performance"><span>07</span>Prestasi sales</a>
+        <a href="#commission"><span>08</span>Komisen</a>
+        <a href="#acquisition"><span>09</span>Acquisition economics</a>
+        <a href="#market"><span>10</span>Market intelligence</a>
+        <a href="#red-flags"><span>11</span>Item to verify</a>
+        <a href="#evidence"><span>12</span>Evidence vs claim</a>
+        <a href="#benchmark"><span>13</span>Benchmark</a>
+        <a href="#decision"><span>14</span>Decision dashboard</a>
+        <a href="#next-actions"><span>15</span>Next action</a>
+      </nav>
+      <div class="progress-box" aria-live="polite">
+        <div class="progress-meta"><span>Bahagian berisi data</span><strong id="progressText">0 / 16</strong></div>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        <p class="autosave" id="autosaveStatus">Simpanan automatik aktif</p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div class="content-width">
+        <section class="page-intro" aria-labelledby="pageTitle">
+          <div>
+            <p class="eyebrow">AFFIRM PLUS × SCIENTEX JENJAROM</p>
+            <h1 id="pageTitle">Meeting Intelligence</h1>
+            <p class="intro-copy">Due diligence untuk menilai keseluruhan sales ecosystem, membezakan maklumat disahkan daripada claim, dan merekod perkara yang masih belum diketahui.</p>
+          </div>
+          <div class="intro-ref"><span>RUJUKAN</span><b>PROJECT SALES PLATFORM</b></div>
+        </section>
+
+        <section class="meeting-meta" aria-label="Maklumat pertemuan">
+          <div class="field"><label for="meetingDate">TARIKH MEETING</label><input id="meetingDate" type="date" data-save></div>
+          <div class="field"><label for="representativeName">NAMA WAKIL</label><input id="representativeName" type="text" placeholder="Nama wakil agensi" data-save></div>
+          <div class="field"><label for="representativeRole">JAWATAN</label><input id="representativeRole" type="text" placeholder="Jawatan" data-save></div>
+          <div class="field"><label for="teamName">TEAM</label><input id="teamName" type="text" placeholder="Nama team" data-save></div>
+        </section>
+
+        <section class="objective-panel dashboard-section" id="objective" data-section aria-labelledby="objectiveTitle">
+          <div class="panel-heading">
+            <div><h2 id="objectiveTitle">Objektif pertemuan</h2><p>Nilai platform dan projek secara berasingan. Pautan ini membawa anda terus ke bahagian berkaitan.</p></div>
+          </div>
+          <div class="objective-cards">
+            <a class="objective-card" href="#project"><span>01 / OFFER</span><strong>PROJECT</strong></a>
+            <a class="objective-card" href="#leads"><span>02 / ACQUISITION</span><strong>LEADS</strong></a>
+            <a class="objective-card" href="#crm"><span>03 / PROCESS</span><strong>SALES SYSTEM</strong></a>
+            <a class="objective-card" href="#marketing"><span>04 / CHANNEL</span><strong>MARKETING</strong></a>
+            <a class="objective-card" href="#team"><span>05 / PEOPLE</span><strong>TEAM</strong></a>
+            <a class="objective-card" href="#commission"><span>06 / RETURN</span><strong>ECONOMICS</strong></a>
+          </div>
+        </section>
+        <p class="meeting-prompt"><span aria-hidden="true">↗</span>“Saya bukan hanya menilai project. Saya sedang menilai keseluruhan sales ecosystem.”</p>
+        <div class="meeting-controls" id="meetingControls" aria-live="polite">
+          <button type="button" id="previousSection">← Sebelum</button>
+          <span id="meetingStepLabel">Bahagian 1 daripada 16</span>
+          <button type="button" id="nextSection">Seterusnya →</button>
+        </div>
+
+        <section class="dashboard-section" id="project" data-section>
+          <details class="section-details" open>
+            <summary class="section-summary"><span class="section-index">01</span><span class="section-title"><strong>Project intelligence</strong><small>Butiran projek dan sumber maklumat</small></span></summary>
+            <div class="section-body">
+              <p class="section-note">Rekod nilai dan sumbernya. Bezakan fakta yang boleh ditunjukkan daripada kenyataan yang masih perlu disahkan.</p>
+              <div class="field-grid">
+                <div class="field"><label for="projectName">PROJECT</label><input id="projectName" type="text" value="Scientex Jenjarom" data-save></div>
+                <div class="field"><label for="developerName">DEVELOPER</label><input id="developerName" type="text" placeholder="Nama developer" data-save></div>
+                <div class="field"><label for="projectPhase">PHASE</label><input id="projectPhase" type="text" placeholder="Fasa / release" data-save></div>
+                <div class="field"><label for="projectLocation">LOCATION</label><input id="projectLocation" type="text" placeholder="Lokasi / mukim" data-save></div>
+                <div class="field"><label for="projectTenure">TENURE</label><input id="projectTenure" type="text" placeholder="Freehold / leasehold / belum diketahui" data-save></div>
+                <div class="field"><label for="projectTitle">TITLE</label><input id="projectTitle" type="text" placeholder="Jenis hak milik" data-save></div>
+                <div class="field"><label for="propertyType">PROPERTY TYPE</label><input id="propertyType" type="text" placeholder="Jenis hartanah" data-save></div>
+                <div class="field"><label for="sellingPrice">SELLING PRICE (RM)</label><input id="sellingPrice" type="number" min="0" step="1000" placeholder="Belum diketahui" data-save></div>
+                <div class="field"><label for="priceRange">PRICE RANGE</label><input id="priceRange" type="text" placeholder="Contoh julat harga" data-save></div>
+                <div class="field"><label for="totalUnits">TOTAL UNITS</label><input id="totalUnits" type="number" min="0" step="1" placeholder="Belum diketahui" data-save></div>
+                <div class="field"><label for="unitsSold">UNITS SOLD</label><input id="unitsSold" type="number" min="0" step="1" placeholder="Belum diketahui" data-save></div>
+                <div class="field"><label for="unitsRemaining">UNITS REMAINING</label><input id="unitsRemaining" type="number" min="0" step="1" placeholder="Belum diketahui" data-save></div>
+                <div class="field field--span-2"><label for="currentPromotion">CURRENT PROMOTION</label><input id="currentPromotion" type="text" placeholder="Nyatakan promo semasa atau belum diketahui" data-save></div>
+                <div class="field"><label for="rebate">REBATE (RM / %)</label><input id="rebate" type="text" placeholder="Nilai dan syarat" data-save></div>
+                <div class="field field--span-2"><label for="otherIncentive">OTHER INCENTIVE</label><input id="otherIncentive" type="text" placeholder="Free legal fee, furnishing dan lain-lain" data-save></div>
+                <div class="field"><label for="completionDate">EXPECTED COMPLETION</label><input id="completionDate" type="text" placeholder="Tarikh / tempoh" data-save></div>
+                <div class="field field--span-2"><label for="targetBuyer">TARGET BUYER</label><input id="targetBuyer" type="text" placeholder="Profil pembeli yang dinyatakan" data-save></div>
+                <div class="field"><label for="projectInfoSource">SUMBER MAKLUMAT PROJECT</label><select id="projectInfoSource" data-save><option value="">Pilih sumber</option><option>Agent</option><option>Developer</option><option>Official document</option><option>Observation</option><option>Unknown</option></select></div>
+                <div class="field field--span-2"><label for="sellingPoints">MAIN SELLING POINTS</label><textarea id="sellingPoints" placeholder="Catat penerangan yang diberikan" data-save></textarea></div>
+                <div class="field"><label for="buyerObjections">MAIN BUYER OBJECTIONS</label><textarea id="buyerObjections" placeholder="Objection yang telah didengar / dinyatakan" data-save></textarea></div>
+                <div class="field field--full"><label for="competitorsQuick">COMPETITORS</label><textarea id="competitorsQuick" placeholder="Project pesaing yang disebut dan sumbernya" data-save></textarea></div>
+              </div>
+              <div class="inline-metrics"><span class="source-tag">Sumber boleh disemak dalam dokumen / demonstrasi</span><span id="unitCheck" class="freshness" data-level="">Semakan unit: belum cukup data</span></div>
+            </div>
+          </details>
+        </section>
+
+        <section class="dashboard-section" id="leads" data-section>
+          <details class="section-details" open>
+            <summary class="section-summary"><span class="section-index">02</span><span class="section-title"><strong>Lead engine</strong><small>Jumlah, kesegaran, kos dan pemilikan acquisition</small></span></summary>
+            <div class="section-body">
+              <p class="section-note">Jangan samakan kuantiti lead dengan kualiti lead. Minta tempoh data, definisi “fresh”, kaedah agihan dan hasil mengikut sumber.</p>
+              <h3 class="subheading">Sumber lead <small>Tanda channel aktif, kemudian isi angka bulanan jika dikongsi</small></h3>
+              <div class="table-wrap" style="margin-top:10px">
+                <table id="leadTable"><thead><tr><th>Channel</th><th>Aktif</th><th>Leads / bln</th><th>Fresh / old</th><th>Dijana oleh</th><th>Kos (RM)</th><th>Siapa bayar</th><th>Allocation</th><th>Kualiti</th><th>Conversion</th></tr></thead><tbody></tbody></table>
+              </div>
+              <div class="metric-grid" aria-live="polite">
+                <div class="metric-card"><span>Total monthly leads</span><strong id="totalLeads">—</strong></div>
+                <div class="metric-card metric-card--green"><span>Fresh leads</span><strong id="freshLeads">—</strong></div>
+                <div class="metric-card metric-card--amber"><span>Old database</span><strong id="oldLeads">—</strong></div>
+                <div class="metric-card"><span>Agent-generated</span><strong id="agentLeads">—</strong></div>
+                <div class="metric-card"><span>Company-generated</span><strong id="companyLeads">—</strong></div>
+                <div class="metric-card"><span>Lead belum dikenal pasti</span><strong id="unknownLeads">—</strong></div>
+              </div>
+              <p class="section-note" style="margin-top:9px">“—” bermaksud angka belum diberi; ia bukan sifar. Rekod lead tanpa data sumber di ruang Unknown.</p>
+            </div>
+          </details>
+        </section>
+
+        <section class="dashboard-section" id="crm" data-section>
+          <details class="section-details" open>
+            <summary class="section-summary"><span class="section-index">03</span><span class="section-title"><strong>CRM &amp; sales system</strong><small>Aliran lead hingga SPA / komisen</small></span></summary>
+            <div class="section-body">
+              <p class="section-note">Minta tunjuk sistem sebenar. Catat angka, kadar conversion dan purata masa bagi setiap stage; jangan isi dengan anggaran tanpa label.</p>
+              <h3 class="subheading">Funnel sales <small>Conversion dikira daripada bilangan stage sebelumnya jika kedua-dua nilai ada</small></h3>
+              <div class="funnel" id="funnelStages"></div>
+              <h3 class="subheading">CRM dan automasi</h3>
+              <div class="field-grid field-grid--4">
+                <div class="field"><label for="crmName">CRM</label><input id="crmName" type="text" placeholder="Nama / tiada / tidak diketahui" data-save></div>
+                <div class="field"><label for="crmAutomation">AUTOMATION</label><input id="crmAutomation" type="text" placeholder="Apa yang di-auto?" data-save></div>
+                <div class="field"><label for="crmWhatsapp">WHATSAPP</label><input id="crmWhatsapp" type="text" placeholder="Integration / manual" data-save></div>
+                <div class="field"><label for="crmTracking">LEAD TRACKING</label><input id="crmTracking" type="text" placeholder="Source, status, aging" data-save></div>
+                <div class="field"><label for="crmFollowup">FOLLOW-UP</label><input id="crmFollowup" type="text" placeholder="Sequence / reminder" data-save></div>
+                <div class="field"><label for="crmDashboard">DASHBOARD</label><input id="crmDashboard" type="text" placeholder="Report yang boleh dilihat" data-save></div>
+                <div class="field"><label for="crmLeadAging">LEAD AGING</label><input id="crmLeadAging" type="text" placeholder="Cara lead lama dikenal pasti" data-save></div>
+                <div class="field"><label for="crmDemo">SYSTEM BOLEH DEMO?</label><select id="crmDemo" data-save><option value="">Belum ditanya</option><option>Yes</option><option>No</option><option>Demo dijadualkan</option></select></div>
+              </div>
+              <h3 class="subheading">Soalan sistem <small>Jawapan ringkas; bukti / demo dicatat di Evidence vs claim</small></h3>
+              <div class="question-list" id="crmQuestions"></div>
+            </div>
+          </details>
+        </section>
+
+        <section class="dashboard-section" id="project-data" data-section>
+          <details class="section-details" open>
+            <summary class="section-summary"><span class="section-index">04</span><span class="section-title"><strong>Real-time project data</strong><small>Ketepatan stok, harga, promo dan saluran kemas kini</small></span></summary>
+            <div class="section-body">
+              <p class="section-note">Soalan utama: “Jika developer menukar promo atau unit availability hari ini, bagaimana consultant akan mengetahuinya?”</p>
+              <div class="checklist" id="liveDataChecks"></div>
+              <h3 class="subheading">Maklumat update</h3>
+              <div class="field-grid field-grid--4">
+                <div class="field"><label for="infoChannel">INFORMATION CHANNEL</label><input id="infoChannel" type="text" placeholder="CRM / WhatsApp / portal / lain-lain" data-save></div>
+                <div class="field"><label for="updateFrequency">UPDATE FREQUENCY</label><select id="updateFrequency" data-save><option value="">Belum diketahui</option><option value="realtime">Real-time</option><option value="same-day">Same day</option><option value="1-3-days">1–3 days</option><option value="over-3-days">Lebih 3 hari</option><option value="unknown">Unknown</option></select></div>
+                <div class="field"><label for="updateOwner">RESPONSIBLE PERSON</label><input id="updateOwner" type="text" placeholder="Nama / jawatan" data-save></div>
+                <div class="field"><label for="updateDelay">ESTIMATED DELAY</label><input id="updateDelay" type="text" placeholder="Contoh: serta-merta / 2 hari" data-save></div>
+                <div class="field field--span-2"><label for="updateSource">SOURCE / BUKTI</label><input id="updateSource" type="text" placeholder="Dokumen, sistem atau contoh update" data-save></div>
+              </div>
+              <div class="inline-metrics"><span class="inline-metric">DATA FRESHNESS <strong id="freshnessBadge" class="freshness">UNKNOWN</strong></span></div>
+            </div>
+          </details>
+        </section>
+
+        <section class="dashboard-section" id="marketing" data-section>
+          <details class="section-details" open>
+            <summary class="section-summary"><span class="section-index">05</span><span class="section-title"><strong>Marketing engine</strong><small>Channel aktif, pemilik kos dan output acquisition</small></span></summary>
+            <div class="section-body">
+              <p class="section-note">Marketing activity bukan marketing effectiveness. Minta leads, conversion, spend dan definisi tempoh yang sama bagi setiap channel.</p>
+              <div class="table-wrap">
+                <table id="marketingTable"><thead><tr><th>Channel</th><th>Aktif?</th><th>Siapa bayar?</th><th>Leads / bln</th><th>Conversion</th><th>Nota / bukti</th></tr></thead><tbody></tbody></table>
+              </div>
+              <h3 class="subheading">Marketing budget bulanan (RM)</h3>
+              <div class="budget-grid">
+                <div class="field"><label for="agencyBudget">AGENCY CONTRIBUTION</label><input id="agencyBudget" type="number" min="0" step="100" placeholder="Belum diberi" data-save></div>
+                <div class="field"><label for="teamBudget">TEAM CONTRIBUTION</label><input id="teamBudget" type="number" min="0" step="100" placeholder="Belum diberi" data-save></div>
+                <div class="field"><label for="developerBudget">DEVELOPER CONTRIBUTION</label><input id="developerBudget" type="number" min="0" step="100" placeholder="Belum diberi" data-save></div>
+                <div class="field"><label for="consultantBudget">CONSULTANT CONTRIBUTION</label><input id="consultantBudget" type="number" min="0" step="100" placeholder="Belum diberi" data-save></div>
+              </div>
+              <div class="calc-strip"><span>Jumlah budget yang dinyatakan</span><strong id="marketingBudgetTotal">INSUFFICIENT DATA</strong><span class="source-tag">Kos kosong tidak dianggap RM0</span></div>
+              <div class="field" style="max-width:520px"><label for="noSpendSupport">Jika saya tidak keluarkan duit sendiri, acquisition support yang masih tersedia?</label><textarea id="noSpendSupport" placeholder="Catat jawapan, channel, had dan bukti" data-save></textarea></div>
+            </div>
+          </details>
+        </section>
+
+        <section class="dashboard-section" id="team" data-section>
+          <details class="section-details" open>
+            <summary class="section-summary"><span class="section-index">06</span><span class="section-title"><strong>Team leader &amp; sales support</strong><small>Kapasiti team, latihan dan bantuan closing</small></span></summary>
+            <div class="section-body">
+              <div class="field-grid field-grid--4">
+                <div class="field"><label for="leaderName">NAME</label><input id="leaderName" type="text" placeholder="Nama team leader" data-save></div>
+                <div class="field"><label for="leaderRole">ROLE</label><input id="leaderRole" type="text" placeholder="Jawatan / fungsi" data-save></div>
+                <div class="field"><label for="leaderYears">YEARS EXPERIENCE</label><input id="leaderYears" type="number" min="0" step="1" placeholder="Belum diketahui" data-save></div>
+                <div class="field"><label for="leaderOwnSales">OWN SALES PRODUCTION</label><input id="leaderOwnSales" type="text" placeholder="Data / tempoh" data-save></div>
+                <div class="field"><label for="teamSize">TEAM SIZE</label><input id="teamSize" type="number" min="0" step="1" placeholder="Belum diketahui" data-save></div>
+                <div class="field"><label for="activeConsultants">ACTIVE CONSULTANTS</label><input id="activeConsultants" type="number" min="0" step="1" placeholder="Definisi active?" data-save></div>
+                <div class="field"><label for="teamSalesMonth">TEAM SALES / MONTH</label><input id="teamSalesMonth" type="number" min="0" step="1" placeholder="Unit; nyatakan tempoh" data-save></div>
+                <div class="field"><label for="projectSalesMonth">PROJECT SALES / MONTH</label><input id="projectSalesMonth" type="number" min="0" step="1" placeholder="Unit; nyatakan tempoh" data-save></div>
+              </div>
+              <h3 class="subheading">Support yang tersedia</h3>
+              <div class="checklist" id="supportChecks"></div>
+              <div class="field" style="margin-top:13px"><label for="closingSupportAnswer">“Jika buyer qualified stuck sebelum booking, siapa membantu closing?”</label><textarea id="closingSupportAnswer" placeholder="Nama / proses / waktu support" data-save></textarea></div>
+            </div>
+          </details>
+        </section>
+
+        <section class="dashboard-section" id="performance" data-section>
+          <details class="section-details" open>
+            <summary class="section-summary"><span class="section-index">07</span><span class="section-title"><strong>Sales performance</strong><small>Angka 3 bulan dan output per consultant aktif</small></span></summary>
+            <div class="section-body">
+              <p class="section-note">Nyatakan tempoh, definisi “active consultant” dan sama ada angka merujuk kepada projek ini atau keseluruhan team.</p>
+              <div class="field-grid field-grid--4">
+                <div class="field"><label for="projectUnits3m">PROJECT UNITS SOLD · 3 BULAN</label><input id="projectUnits3m" type="number" min="0" step="1" placeholder="Belum diberi" data-save></div>
+                <div class="field"><label for="teamUnits3m">TEAM UNITS SOLD · 3 BULAN</label><input id="teamUnits3m" type="number" min="0" step="1" placeholder="Belum diberi" data-save></div>
+                <div class="field"><label for="activeConsultants3m">ACTIVE CONSULTANTS</label><input id="activeConsultants3m" type="number" min="0" step="1" placeholder="Belum diberi" data-save></div>
+                <div class="field"><label for="leads3m">LEADS / BULAN</label><input id="leads3m" type="number" min="0" step="1" placeholder="Belum diberi" data-save></div>
+                <div class="field"><label for="bookings3m">BOOKINGS / BULAN</label><input id="bookings3m" type="number" min="0" step="1" placeholder="Belum diberi" data-save></div>
+                <div class="field"><label for="spa3m">SPA / BULAN</label><input id="spa3m" type="number" min="0" step="1" placeholder="Belum diberi" data-save></div>
+                <div class="field field--span-2"><label for="performanceSource">SUMBER / TEMPOH DATA</label><input id="performanceSource" type="text" placeholder="Dashboard / laporan / penerangan lisan; bulan yang diliputi" data-save></div>
+              </div>
+              <div class="metric-grid">
+                <div class="metric-card"><span>Sales / active consultant · 3 bln</span><strong id="salesPerConsultant">DATA NOT PROVIDED</strong></div>
+                <div class="metric-card"><span>Lead → booking</span><strong id="leadBookingRate">DATA NOT PROVIDED</strong></div>
+                <div class="metric-card"><span>Booking → SPA</span><strong id="bookingSpaRate">DATA NOT PROVIDED</strong></div>
+                <div class="metric-card"><span>Lead → SPA</span><strong id="leadSpaRate">DATA NOT PROVIDED</strong></div>
+              </div>
+            </div>
+          </details>
+        </section>
+
+        <section class="dashboard-section" id="commission" data-section>
+          <details class="section-details" open>
+            <summary class="section-summary"><span class="section-index">08</span><span class="section-title"><strong>Commission economics</strong><small>Komisen bersih, senario unit dan cashflow peribadi</small></span></summary>
+            <div class="section-body">
+              <p class="section-note">Peratus split di bawah dianggap bahagian yang diterima pada setiap lapisan, daripada jumlah lapisan sebelumnya. Semak definisi dan semua potongan dengan pihak agensi.</p>
+              <div class="field-grid field-grid--4">
+                <div class="field"><label for="avgSellingPrice">AVERAGE SELLING PRICE (RM)</label><input id="avgSellingPrice" type="number" min="0" step="1000" placeholder="Belum diberi" data-save></div>
+                <div class="field"><label for="commissionRate">GROSS COMMISSION (%)</label><input id="commissionRate" type="number" min="0" max="100" step="0.1" placeholder="Belum diberi" data-save></div>
+                <div class="field"><label for="grossCommissionRm">GROSS COMMISSION (RM)</label><input id="grossCommissionRm" type="number" min="0" step="100" placeholder="Boleh kira dari harga × %" data-save></div>
+                <div class="field"><label for="agencySplit">AGENCY SHARE (%)</label><input id="agencySplit" type="number" min="0" max="100" step="0.1" placeholder="Bahagian diterima" data-save></div>
+                <div class="field"><label for="teamSplit">TEAM SHARE (%)</label><input id="teamSplit" type="number" min="0" max="100" step="0.1" placeholder="Bahagian diterima" data-save></div>
+                <div class="field"><label for="consultantSplit">CONSULTANT SHARE (%)</label><input id="consultantSplit" type="number" min="0" max="100" step="0.1" placeholder="Bahagian diterima" data-save></div>
+                <div class="field"><label for="otherDeductions">OTHER DEDUCTIONS / UNIT (RM)</label><input id="otherDeductions" type="number" min="0" step="10" placeholder="Belum diberi" data-save></div>
+                <div class="field"><label for="marketingDeduction">MARKETING DEDUCTION / UNIT (RM)</label><input id="marketingDeduction" type="number" min="0" step="10" placeholder="Belum diberi" data-save></div>
+                <div class="field"><label for="paymentPeriod">PAYMENT PERIOD</label><input id="paymentPeriod" type="text" placeholder="Trigger dan tempoh bayaran" data-save></div>
+                <div class="field"><label for="clawback">CLAWBACK</label><input id="clawback" type="text" placeholder="Syarat / tempoh / tidak diketahui" data-save></div>
+                <div class="field field--span-2"><label for="commissionSource">SOURCE / DOKUMEN KOMISEN</label><input id="commissionSource" type="text" placeholder="Jadual komisen / surat tawaran / belum diterima" data-save></div>
+              </div>
+              <div class="calc-strip"><span>NET COMMISSION PER UNIT</span><strong id="netCommissionUnit">INSUFFICIENT DATA</strong><span id="grossCommissionCalc"></span></div>
+              <h3 class="subheading">Anggaran komisen mengikut unit / bulan <small>Bukan jaminan pendapatan; menggunakan net/unit di atas</small></h3>
+              <div class="table-wrap"><table><thead><tr><th>Unit / bulan</th><th>Anggaran gross (RM)</th><th>Anggaran net (RM)</th></tr></thead><tbody id="commissionScenarios"></tbody></table></div>
+              <h3 class="subheading">Kos bulanan peribadi (RM)</h3>
+              <div class="field-grid field-grid--4">
+                <div class="field"><label for="costPetrol">PETROL</label><input id="costPetrol" type="number" min="0" step="10" placeholder="Belum diberi" data-save></div>
+                <div class="field"><label for="costParking">PARKING / TOLL</label><input id="costParking" type="number" min="0" step="10" placeholder="Belum diberi" data-save></div>
+                <div class="field"><label for="costPhone">PHONE</label><input id="costPhone" type="number" min="0" step="10" placeholder="Belum diberi" data-save></div>
+                <div class="field"><label for="costMarketing">MARKETING</label><input id="costMarketing" type="number" min="0" step="10" placeholder="Belum diberi" data-save></div>
+                <div class="field"><label for="costOther">OTHER</label><input id="costOther" type="number" min="0" step="10" placeholder="Belum diberi" data-save></div>
+                <div class="field"><label for="expectedUnits">UNIT / BULAN (SENARIO)</label><input id="expectedUnits" type="number" min="0" step="1" placeholder="Isi senario anda" data-save></div>
+              </div>
+              <div class="calc-strip"><span>NET CASHFLOW ESTIMATE</span><strong id="netCashflow">INSUFFICIENT DATA</strong><span>Net commission × unit − kos peribadi</span></div>
+            </div>
+          </details>
+        </section>
+
+        <section class="dashboard-section" id="acquisition" data-section>
+          <details class="section-details" open>
+            <summary class="section-summary"><span class="section-index">09</span><span class="section-title"><strong>Customer acquisition economics</strong><small>CPL, CPQL, cost per booking, CAC dan contribution</small></span></summary>
+            <div class="section-body">
+              <p class="section-note">Kiraan memerlukan kos dan denominator bagi tempoh yang sama. Jika satu nilai penting tiada, hasil kekal sebagai “INSUFFICIENT DATA”.</p>
+              <div class="field-grid field-grid--4">
+                <div class="field"><label for="qualifiedLeads">QUALIFIED LEADS / BULAN</label><input id="qualifiedLeads" type="number" min="0" step="1" placeholder="Belum diberi" data-save></div>
+                <div class="field"><label for="acquisitionBookings">BOOKINGS / BULAN</label><input id="acquisitionBookings" type="number" min="0" step="1" placeholder="Belum diberi" data-save></div>
+                <div class="field"><label for="acquisitionCustomers">CUSTOMERS / SPA / BULAN</label><input id="acquisitionCustomers" type="number" min="0" step="1" placeholder="Belum diberi" data-save></div>
+                <div class="field"><label for="additionalAcqCost">KOS ACQUISITION LAIN (RM / BLN)</label><input id="additionalAcqCost" type="number" min="0" step="100" placeholder="Belum diberi" data-save></div>
+                <div class="field field--span-2"><label for="acqPeriod">TEMPOH DATA KOS DAN CONVERSION</label><input id="acqPeriod" type="text" placeholder="Contoh: purata bulanan Apr–Jun 2026" data-save></div>
+              </div>
+              <div class="metric-grid">
+                <div class="metric-card"><span>CPL · kos / lead</span><strong id="cplResult">INSUFFICIENT DATA</strong></div>
+                <div class="metric-card"><span>CPQL · kos / qualified lead</span><strong id="cpqlResult">INSUFFICIENT DATA</strong></div>
+                <div class="metric-card"><span>Cost per booking</span><strong id="costBookingResult">INSUFFICIENT DATA</strong></div>
+                <div class="metric-card"><span>CAC · kos / customer</span><strong id="cacResult">INSUFFICIENT DATA</strong></div>
+                <div class="metric-card"><span>Commission per customer</span><strong id="commissionCustomerResult">INSUFFICIENT DATA</strong></div>
+                <div class="metric-card"><span>Contribution margin / customer</span><strong id="contributionResult">INSUFFICIENT DATA</strong></div>
+              </div>
+              <p class="section-note" style="margin-top:9px">Jumlah marketing budget dikira daripada input Section 05. CAC menggunakan marketing budget + kos acquisition lain.</p>
+            </div>
+          </details>
+        </section>
+
+        <section class="dashboard-section" id="market" data-section>
+          <details class="section-details" open>
+            <summary class="section-summary"><span class="section-index">10</span><span class="section-title"><strong>Competitive &amp; market intelligence</strong><small>Perbandingan yang diberi buyer, team atau sumber rasmi</small></span></summary>
+            <div class="section-body">
+              <p class="section-note">Jangan simpulkan kelebihan atau kelemahan tanpa sumber. Rekod perspektif dan siapa yang menyatakannya.</p>
+              <div class="table-wrap"><table id="competitorTable"><thead><tr><th>Competitor</th><th>Price</th><th>Product</th><th>Promotion</th><th>Strength</th><th>Weakness</th><th>Source</th></tr></thead><tbody></tbody></table></div>
+              <h3 class="subheading">Buyer choice / objection</h3>
+              <div class="field-grid field-grid--2">
+                <div class="field"><label for="whyChoose">WHY BUYER CHOOSES SCIENTEX</label><textarea id="whyChoose" placeholder="Sebab yang didengar; siapa / sumber" data-save></textarea></div>
+                <div class="field"><label for="whyReject">WHY BUYER REJECTS SCIENTEX</label><textarea id="whyReject" placeholder="Sebab yang didengar; siapa / sumber" data-save></textarea></div>
+                <div class="field"><label for="mainObjection">MAIN OBJECTION</label><textarea id="mainObjection" placeholder="Objection sebenar / kekerapan jika diketahui" data-save></textarea></div>
+                <div class="field"><label for="competitorAdvantage">MAIN COMPETITOR ADVANTAGE</label><textarea id="competitorAdvantage" placeholder="Dinyatakan oleh siapa; bukti" data-save></textarea></div>
+                <div class="field field--span-2"><label for="scientexAdvantage">MAIN SCIENTEX ADVANTAGE</label><textarea id="scientexAdvantage" placeholder="Dinyatakan oleh siapa; bukti" data-save></textarea></div>
+              </div>
+            </div>
+          </details>
+        </section>
+
+        <section class="dashboard-section" id="red-flags" data-section>
+          <details class="section-details" open>
+            <summary class="section-summary"><span class="section-index">11</span><span class="section-title"><strong>Red flag detector · item to verify</strong><small>Tanda isu yang memerlukan semakan, bukan keputusan tentang agensi</small></span></summary>
+            <div class="section-body">
+              <p class="section-note">Setiap kotak yang ditanda masuk ke senarai “Item to verify”. Tanda bermaksud perlukan bukti atau penjelasan lanjut, bukan kesimpulan.</p>
+              <div class="checklist red-flag-list" id="redFlagChecks"></div>
+              <div class="verify-list" aria-live="polite"><h3>ITEM TO VERIFY · <span id="redFlagCount">0</span></h3><ul id="verifyList"><li>Belum ada item ditanda.</li></ul></div>
+              <div class="field" style="margin-top:13px"><label for="otherVerify">ITEM LAIN UNTUK DISAHKAN</label><textarea id="otherVerify" placeholder="Tambah gap / janji / angka yang perlu dibuktikan" data-save></textarea></div>
+            </div>
+          </details>
+        </section>
+
+        <section class="dashboard-section" id="evidence" data-section>
+          <details class="section-details" open>
+            <summary class="section-summary"><span class="section-index">12</span><span class="section-title"><strong>Evidence vs claim</strong><small>Asingkan kata-kata, bukti, sumber dan status pengesahan</small></span></summary>
+            <div class="section-body">
+              <p class="section-note">Ruang claim bermula kosong. Contoh dalam placeholder hanyalah contoh; tidak menjadi data meeting sehingga anda isi.</p>
+              <div class="table-wrap evidence-table"><table id="evidenceTable"><thead><tr><th>Claim</th><th>Evidence</th><th>Source</th><th>Verified?</th><th></th></tr></thead><tbody></tbody></table></div>
+              <button class="add-row" id="addEvidenceRow" type="button" style="margin-top:9px">+ Tambah claim</button>
+            </div>
+          </details>
+        </section>
+
+        <section class="dashboard-section" id="benchmark" data-section>
+          <details class="section-details" open>
+            <summary class="section-summary"><span class="section-index">13</span><span class="section-title"><strong>Previous agency vs Affirm Plus</strong><small>Perbandingan fakta; tiada ranking automatik</small></span></summary>
+            <div class="section-body">
+              <p class="section-note">Lajur pengalaman terdahulu berpandukan maklumat yang anda berikan. Lajur Affirm Plus sengaja kosong sehingga dijawab dan disahkan dalam pertemuan.</p>
+              <div class="table-wrap benchmark-table"><table><thead><tr><th>Category</th><th>Pengalaman terdahulu · rujukan anda</th><th>Affirm Plus · isi semasa meeting</th></tr></thead><tbody id="benchmarkRows"></tbody></table></div>
+            </div>
+          </details>
+        </section>
+
+        <section class="dashboard-section" id="decision" data-section>
+          <details class="section-details" open>
+            <summary class="section-summary"><span class="section-index">14</span><span class="section-title"><strong>Final decision dashboard</strong><small>Status ditentukan oleh anda berdasarkan evidence yang direkodkan</small></span></summary>
+            <div class="section-body">
+              <p class="section-note">Tiada skor keseluruhan dan tiada keputusan “join / jangan join”. Pilih status hanya selepas menilai evidence dan implikasinya.</p>
+              <div class="decision-grid" id="decisionGrid"></div>
+              <div class="decision-groups">
+                <div class="analysis-box analysis-box--green"><h3>What we know</h3><ul id="knownList"><li class="empty">Isi data meeting untuk melihat fakta yang direkodkan.</li></ul></div>
+                <div class="analysis-box analysis-box--amber"><h3>What we don't know</h3><ul id="unknownList"><li class="empty">Belum dianalisis.</li></ul></div>
+                <div class="analysis-box analysis-box--amber"><h3>What needs verification</h3><ul id="verifyAnalysisList"><li class="empty">Belum dianalisis.</li></ul></div>
+                <div class="analysis-box analysis-box--risk"><h3>What could be a risk</h3><ul id="riskList"><li class="empty">Belum dianalisis.</li></ul></div>
+                <div class="analysis-box"><h3>What could be an opportunity</h3><ul id="opportunityList"><li class="empty">Belum dianalisis.</li></ul></div>
+                <div class="analysis-box"><h3>Economic implications</h3><ul id="economicList"><li class="empty">Belum dianalisis.</li></ul></div>
+                <div class="analysis-box"><h3>Sales-system implications</h3><ul id="systemList"><li class="empty">Belum dianalisis.</li></ul></div>
+                <div class="analysis-box"><h3>Follow-up actions</h3><ul id="followupList"><li class="empty">Belum dianalisis.</li></ul></div>
+              </div>
+              <button class="header-button header-button--primary" id="analyzeButton" type="button" style="margin-top:14px">ANALYSE MY NOTES</button>
+              <p class="analysis-disclaimer">Analisis tempatan berasaskan peraturan pada input, bukan model AI atau nasihat keputusan. Semak setiap fakta, sumber dan tafsiran secara manual.</p>
+            </div>
+          </details>
+        </section>
+
+        <section class="dashboard-section" id="next-actions" data-section>
+          <details class="section-details" open>
+            <summary class="section-summary"><span class="section-index">15</span><span class="section-title"><strong>Next action</strong><small>Permintaan data, pengesahan dan susulan</small></span></summary>
+            <div class="section-body">
+              <div class="checklist action-row" id="nextActionChecks"></div>
+              <div class="field-grid field-grid--2" style="margin-top:13px">
+                <div class="field"><label for="contactPerson">CONTACT PERSON / DETAIL</label><input id="contactPerson" type="text" placeholder="Nama, nombor atau email" data-save></div>
+                <div class="field"><label for="followupDate">FOLLOW-UP MEETING / TARIKH</label><input id="followupDate" type="text" placeholder="Tarikh / tindakan susulan" data-save></div>
+                <div class="field field--full"><label for="nextActionNotes">NOTA SUSULAN</label><textarea id="nextActionNotes" placeholder="Pemilik tindakan, deadline dan dokumen yang diminta" data-save></textarea></div>
+              </div>
+            </div>
+          </details>
+        </section>
+        <p class="footer-note">Data disimpan dalam localStorage browser ini sahaja. Eksport ringkasan sebelum berpindah peranti atau membersihkan data browser.</p>
+      </div>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (() => {
+      'use strict';
+      const STORAGE_KEY = 'scientex-meeting-intelligence-v1';
+      const sections = [...document.querySelectorAll('[data-section]')];
+      const navigationLinks = [...document.querySelectorAll('#sectionNav a')];
+      const sourceOptions = ['Developer leads','Agency leads','Team-generated leads','Meta Ads','TikTok','Google','Property portals','Organic content','Existing database','Referral','Roadshow','Other'];
+      const marketingChannels = ['Meta','TikTok','Google','Property portals','Organic social','SEO','Database','WhatsApp','Roadshow','Booth','Developer campaign','Referral'];
+      const crmQuestions = [
+        'Lead masuk secara automatik?', 'Lead allocation bagaimana?', 'Consultant menerima notification?',
+        'Lead status boleh dikemaskini?', 'Ada WhatsApp integration?', 'Ada automated follow-up?',
+        'Ada reminder?', 'Boleh track source?', 'Boleh track conversion?',
+        'Boleh track lead aging?', 'Boleh lihat performance dashboard?', 'Boleh demonstrasi sistem?'
+      ];
+      const funnelNames = ['LEAD','ASSIGNED','CONTACTED','QUALIFIED','VIEWING','BOOKING','LOAN','SPA','COMMISSION'];
+      const liveDataItems = ['Live stock availability','Current pricing','Current promotion','Rebate','Incentive','Unit status','Loan package','Developer update','Campaign update'];
+      const supportItems = ['Training','Product briefing','Sales script','Objection handling','Loan support','Closing support','Site support','Developer liaison','Content','Marketing support','Senior closer'];
+      const redFlags = [
+        'Banyak claim tetapi tiada angka', '“Leads banyak” tetapi tiada data', 'Lead kebanyakannya database lama',
+        'Tiada CRM sebenar', 'Excel / manual process', 'Promo update lambat', 'Stock update lambat',
+        'Marketing bergantung kepada agent', 'Consultant perlu membiayai acquisition', 'Tiada conversion data',
+        'Tiada closing support', 'Team leader lebih fokus recruitment', 'Commission structure tidak jelas',
+        'Payment timeline tidak jelas'
+      ];
+      const actions = [
+        'Request project sales data','Request CRM demonstration','Request commission structure','Verify lead allocation',
+        'Verify marketing support','Verify project stock','Verify current promotion','Verify team sales performance',
+        'Get contact person','Follow-up meeting'
+      ];
+      const benchmark = [
+        ['Lead quality','Banyak lead merupakan database lama'],
+        ['Lead freshness','Sebahagian lead ialah database lama'],
+        ['CRM','Tiada CRM dinyatakan; listing menggunakan Excel'],
+        ['Listing system','Excel; extract dan kemas kini manual'],
+        ['Project data','Info project / promo tidak sentiasa terkini'],
+        ['Promo update','Kemas kini tidak sentiasa pantas'],
+        ['Marketing channels','Meta Ads dan TikTok Live disebut'],
+        ['Paid advertising','Acquisition tambahan perlu modal agent'],
+        ['Follow-up','Tindakan terhadap lead menjadi lambat'],
+        ['Automation','Extract dan kemas kini data secara manual'],
+        ['Closing support','Belum dinyatakan'],
+        ['Analytics','Belum dinyatakan'],
+        ['Commission','Belum dinyatakan'],
+        ['Cashflow','Agent menanggung kos acquisition tambahan'],
+        ['Agent support','Lead support ada; channel lain terhad menurut pengalaman anda']
+      ];
+      const decisionCategories = ['PROJECT','LEAD ENGINE','CRM','DATA','MARKETING','TEAM','COMMISSION','CASHFLOW','SCALABILITY'];
+      let evidenceRowCount = 3;
+      let toastTimer;
+
+      const escapeHtml = (value) => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+      const makeId = (prefix, index) => `${prefix}-${index}`;
+      const savedAttrs = 'data-save';
+      const fieldInput = (id, type='text', placeholder='') => `<input id="${id}" ${savedAttrs} type="${type}" ${type === 'number' ? 'min="0" step="1"' : ''} placeholder="${escapeHtml(placeholder)}">`;
+
+      function renderChoices(containerId, items, prefix) {
+        document.getElementById(containerId).innerHTML = items.map((item,index) => {
+          const id = makeId(prefix,index);
+          return `<label class="choice" for="${id}"><input id="${id}" type="checkbox" data-save> ${escapeHtml(item)}</label>`;
+        }).join('');
+      }
+
+      function renderSelectOptions(options, selected='') {
+        return options.map(option => `<option value="${escapeHtml(option.value)}" ${option.value === selected ? 'selected' : ''}>${escapeHtml(option.label)}</option>`).join('');
+      }
+
+      function renderLeadRows() {
+        document.querySelector('#leadTable tbody').innerHTML = sourceOptions.map((name,index) => {
+          const id = `lead-${index}`;
+          return `<tr><td>${escapeHtml(name)}</td><td><input id="${id}-active" type="checkbox" data-save aria-label="${escapeHtml(name)} aktif"></td><td><input id="${id}-count" data-save type="number" min="0" step="1" placeholder="—" aria-label="${escapeHtml(name)} leads sebulan"></td><td><select id="${id}-age" data-save aria-label="${escapeHtml(name)} kesegaran"><option value="">Unknown</option><option value="fresh">Fresh</option><option value="old">Old database</option></select></td><td><select id="${id}-generator" data-save aria-label="${escapeHtml(name)} dijana oleh"><option value="">Unknown</option><option value="company">Agency / team</option><option value="developer">Developer</option><option value="consultant">Consultant</option><option value="external">External / referral</option></select></td><td><input id="${id}-cost" data-save type="number" min="0" step="10" placeholder="—" aria-label="${escapeHtml(name)} kos"></td><td><select id="${id}-payer" data-save aria-label="${escapeHtml(name)} pihak membayar"><option value="">Unknown</option><option value="company">Agency / company</option><option value="team">Team</option><option value="consultant">Consultant</option><option value="developer">Developer</option><option value="shared">Shared</option></select></td><td><input id="${id}-allocation" data-save type="text" placeholder="—" aria-label="${escapeHtml(name)} allocation"></td><td><input id="${id}-quality" data-save type="text" placeholder="—" aria-label="${escapeHtml(name)} kualiti"></td><td><input id="${id}-conversion" data-save type="text" placeholder="—" aria-label="${escapeHtml(name)} conversion"></td></tr>`;
+        }).join('');
+      }
+
+      function renderFunnel() {
+        document.getElementById('funnelStages').innerHTML = funnelNames.map((name,index) => `<div class="funnel-stage"><span class="funnel-number">${String(index+1).padStart(2,'0')}</span><div class="funnel-stage-main"><strong>${escapeHtml(name)}</strong><div class="funnel-inputs"><label>Number<input id="stage-${index}-number" data-save type="number" min="0" step="1" placeholder="—"></label><label>Average time<input id="stage-${index}-time" data-save type="text" placeholder="—"></label></div></div><span class="funnel-rate" id="stage-${index}-rate">${index === 0 ? 'BASELINE' : '— conversion'}</span></div>`).join('');
+      }
+
+      function renderQuestions() {
+        document.getElementById('crmQuestions').innerHTML = crmQuestions.map((question,index) => `<div class="question-row"><label for="crm-question-${index}">${escapeHtml(index+1)}. ${escapeHtml(question)}</label><select id="crm-question-${index}" data-save><option value="">Belum ditanya</option><option>Yes</option><option>No</option><option>Partial</option><option>Unknown</option></select></div>`).join('');
+      }
+
+      function renderMarketing() {
+        document.querySelector('#marketingTable tbody').innerHTML = marketingChannels.map((channel,index) => `<tr><td>${escapeHtml(channel)}</td><td><input id="marketing-${index}-active" type="checkbox" data-save aria-label="${escapeHtml(channel)} aktif"></td><td><select id="marketing-${index}-payer" data-save aria-label="${escapeHtml(channel)} siapa bayar"><option value="">Unknown</option><option>Agency</option><option>Team</option><option>Developer</option><option>Consultant</option><option>Shared</option></select></td><td><input id="marketing-${index}-leads" type="number" min="0" step="1" data-save placeholder="—" aria-label="${escapeHtml(channel)} leads"></td><td><input id="marketing-${index}-conversion" type="text" data-save placeholder="—" aria-label="${escapeHtml(channel)} conversion"></td><td><input id="marketing-${index}-notes" type="text" data-save placeholder="—" aria-label="${escapeHtml(channel)} nota"></td></tr>`).join('');
+      }
+
+      function renderCompetitors() {
+        document.querySelector('#competitorTable tbody').innerHTML = [1,2,3].map(index => `<tr><td>Competitor ${index}</td><td><input id="competitor-${index}-price" type="text" data-save placeholder="Price"></td><td><input id="competitor-${index}-product" type="text" data-save placeholder="Product"></td><td><input id="competitor-${index}-promotion" type="text" data-save placeholder="Promotion"></td><td><input id="competitor-${index}-strength" type="text" data-save placeholder="Strength"></td><td><input id="competitor-${index}-weakness" type="text" data-save placeholder="Weakness"></td><td><input id="competitor-${index}-source" type="text" data-save placeholder="Source"></td></tr>`).join('');
+      }
+
+      function renderEvidenceRow(index) {
+        const row = document.createElement('tr');
+        row.dataset.evidenceRow = String(index);
+        row.innerHTML = `<td><input id="evidence-${index}-claim" type="text" data-save placeholder="SAMPLE / NOT VERIFIED · cth. “Lead banyak”"></td><td><input id="evidence-${index}-evidence" type="text" data-save placeholder="Dokumen, demo, angka..."></td><td><input id="evidence-${index}-source" type="text" data-save placeholder="Source / pemilik data"></td><td><select id="evidence-${index}-verified" data-save><option value="">Belum disemak</option><option value="yes">YES</option><option value="no">NO</option></select></td><td><button class="remove-row" type="button" data-remove-evidence="${index}" aria-label="Buang baris claim">×</button></td>`;
+        return row;
+      }
+
+      function renderEvidenceRows(count=3) {
+        const tbody = document.querySelector('#evidenceTable tbody');
+        tbody.replaceChildren();
+        for (let index=0; index<count; index++) tbody.append(renderEvidenceRow(index));
+        evidenceRowCount = count;
+      }
+
+      function renderBenchmark() {
+        document.getElementById('benchmarkRows').innerHTML = benchmark.map(([category,previous],index) => `<tr><td>${escapeHtml(category)}</td><td><input id="benchmark-prev-${index}" type="text" data-save value="${escapeHtml(previous)}" aria-label="${escapeHtml(category)} pengalaman terdahulu"></td><td><input id="benchmark-current-${index}" type="text" data-save placeholder="Belum direkod / belum disahkan" aria-label="${escapeHtml(category)} Affirm Plus"></td></tr>`).join('');
+      }
+
+      function renderDecisions() {
+        document.getElementById('decisionGrid').innerHTML = decisionCategories.map((category,index) => `<div class="decision-card"><label for="decision-status-${index}">${escapeHtml(category)}</label><select id="decision-status-${index}" data-save><option value="">Belum dinilai</option><option value="support">DATA SUPPORTS</option><option value="more">NEED MORE DATA</option><option value="risk">RISK / GAP IDENTIFIED</option></select><textarea id="decision-note-${index}" data-save placeholder="Evidence / implikasi / apa yang masih unknown"></textarea></div>`).join('');
+      }
+
+      function renderChecklist(containerId, items, prefix, className='') {
+        document.getElementById(containerId).classList.add(...className.split(' ').filter(Boolean));
+        document.getElementById(containerId).innerHTML = items.map((item,index) => `<label class="check-item" for="${prefix}-${index}"><input id="${prefix}-${index}" type="checkbox" data-save> <span>${escapeHtml(item)}</span></label>`).join('');
+      }
+
+      function restore() {
+        let saved;
+        try { saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null'); } catch { saved = null; }
+        if (!saved || !Array.isArray(saved.fields)) return;
+        if (Number.isInteger(saved.evidenceRowCount) && saved.evidenceRowCount > 0 && saved.evidenceRowCount < 30) renderEvidenceRows(saved.evidenceRowCount);
+        saved.fields.forEach(item => {
+          const element = document.getElementById(item.id);
+          if (!element) return;
+          if (element.type === 'checkbox') element.checked = Boolean(item.checked);
+          else element.value = item.value ?? '';
+        });
+      }
+
+      function persist(showStatus=true) {
+        const fields = [...document.querySelectorAll(`[${savedAttrs}]`)].map(element => ({
+          id: element.id,
+          value: element.type === 'checkbox' ? undefined : element.value,
+          checked: element.type === 'checkbox' ? element.checked : undefined
+        }));
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify({fields,evidenceRowCount,savedAt:new Date().toISOString()}));
+          if (showStatus) document.getElementById('autosaveStatus').textContent = `Disimpan ${new Date().toLocaleTimeString('ms-MY',{hour:'2-digit',minute:'2-digit'})}`;
+        } catch {
+          document.getElementById('autosaveStatus').textContent = 'Simpanan browser tidak tersedia';
+        }
+      }
+
+      function val(id) {
+        const element = document.getElementById(id);
+        if (!element || element.value.trim() === '') return null;
+        const number = Number(element.value);
+        return element.type === 'number' ? (Number.isFinite(number) ? number : null) : element.value.trim();
+      }
+
+      function fmtNumber(value, maximumFractionDigits=0) {
+        return new Intl.NumberFormat('ms-MY',{maximumFractionDigits}).format(value);
+      }
+      function fmtRM(value) {
+        return `RM ${new Intl.NumberFormat('ms-MY',{minimumFractionDigits:2,maximumFractionDigits:2}).format(value)}`;
+      }
+      function asRM(value) { return value == null ? 'INSUFFICIENT DATA' : fmtRM(value); }
+      function ratio(numerator,denominator) {
+        return numerator == null || denominator == null || denominator === 0 ? null : numerator / denominator * 100;
+      }
+      function setText(id,text) { const element=document.getElementById(id); if(element) element.textContent=text; }
+      function hasValue(id) { return val(id) !== null; }
+
+      function calculateLeads() {
+        const rows = sourceOptions.map((name,index) => ({
+          count: val(`lead-${index}-count`),
+          age: val(`lead-${index}-age`),
+          payer: val(`lead-${index}-payer`),
+          generator: val(`lead-${index}-generator`)
+        }));
+        const knownCounts = rows.map(row => row.count).filter(value => value !== null);
+        const sum = selector => rows.reduce((total,row) => total + (selector(row) ? (row.count || 0) : 0),0);
+        const all = knownCounts.length ? rows.reduce((total,row) => total + (row.count || 0),0) : null;
+        const fresh = rows.some(row => row.age === 'fresh' && row.count !== null) ? sum(row => row.age === 'fresh') : null;
+        const old = rows.some(row => row.age === 'old' && row.count !== null) ? sum(row => row.age === 'old') : null;
+        const agent = rows.some(row => row.generator === 'consultant' && row.count !== null) ? sum(row => row.generator === 'consultant') : null;
+        const company = rows.some(row => ['company','developer'].includes(row.generator) && row.count !== null) ? sum(row => ['company','developer'].includes(row.generator)) : null;
+        const unknown = all === null ? null : Math.max(0,all - (fresh || 0) - (old || 0));
+        setText('totalLeads',all === null ? '—' : fmtNumber(all));
+        setText('freshLeads',fresh === null ? '—' : fmtNumber(fresh));
+        setText('oldLeads',old === null ? '—' : fmtNumber(old));
+        setText('agentLeads',agent === null ? '—' : fmtNumber(agent));
+        setText('companyLeads',company === null ? '—' : fmtNumber(company));
+        setText('unknownLeads',unknown === null ? '—' : fmtNumber(unknown));
+        return {all,fresh,old,agent,company,unknown};
+      }
+
+      function calculateFunnel() {
+        const numbers = funnelNames.map((_,index) => val(`stage-${index}-number`));
+        funnelNames.forEach((_,index) => {
+          const rate = index === 0 ? null : ratio(numbers[index],numbers[index-1]);
+          setText(`stage-${index}-rate`,index === 0 ? 'BASELINE' : rate === null ? '— conversion' : `${fmtNumber(rate,1)}% conversion`);
+        });
+        const issues=[];
+        for(let index=1;index<numbers.length;index++) {
+          if(numbers[index] !== null && numbers[index-1] !== null && numbers[index] > numbers[index-1]) issues.push(`${funnelNames[index]} (${numbers[index]}) melebihi ${funnelNames[index-1]} (${numbers[index-1]})`);
+        }
+        return {numbers,issues};
+      }
+
+      function calculateMarketingBudget() {
+        const ids=['agencyBudget','teamBudget','developerBudget','consultantBudget'];
+        const values=ids.map(val);
+        const allKnown=values.every(value => value !== null);
+        const partialTotal=values.some(value => value !== null) ? values.reduce((sum,value) => sum+(value||0),0) : null;
+        const total=allKnown ? partialTotal : null;
+        setText('marketingBudgetTotal',allKnown ? fmtRM(total) : 'INSUFFICIENT DATA');
+        return {total,partialTotal,allKnown};
+      }
+
+      function calculateProject() {
+        const total=val('totalUnits'), sold=val('unitsSold'), remaining=val('unitsRemaining');
+        const unitCheck=document.getElementById('unitCheck');
+        if(total !== null && sold !== null && remaining !== null) {
+          if(sold+remaining > total) { unitCheck.textContent='Semakan unit: jumlah tidak sepadan'; unitCheck.dataset.level='red'; }
+          else { unitCheck.textContent='Semakan unit: nilai dicatat'; unitCheck.dataset.level='green'; }
+        } else { unitCheck.textContent='Semakan unit: belum cukup data'; unitCheck.dataset.level=''; }
+        const freshness=val('updateFrequency');
+        const labels={realtime:['REAL-TIME','green'], 'same-day':['SAME DAY','green'], '1-3-days':['1–3 DAYS','amber'], 'over-3-days':['> 3 DAYS','red'], unknown:['UNKNOWN','amber']};
+        const badge=document.getElementById('freshnessBadge');
+        const [text,level]=labels[freshness] || ['UNKNOWN','amber'];
+        badge.textContent=text; badge.dataset.level=level;
+        return {total,sold,remaining,freshness:text,unitMismatch:total!==null&&sold!==null&&remaining!==null&&sold+remaining>total};
+      }
+
+      function calculatePerformance() {
+        const units=val('teamUnits3m');
+        const active=val('activeConsultants3m');
+        const salesPer=units!==null&&active!==null&&active>0 ? units/active : null;
+        const leadBooking=ratio(val('bookings3m'),val('leads3m'));
+        const bookingSpa=ratio(val('spa3m'),val('bookings3m'));
+        const leadSpa=ratio(val('spa3m'),val('leads3m'));
+        setText('salesPerConsultant',salesPer===null?'DATA NOT PROVIDED':fmtNumber(salesPer,2));
+        setText('leadBookingRate',leadBooking===null?'DATA NOT PROVIDED':`${fmtNumber(leadBooking,1)}%`);
+        setText('bookingSpaRate',bookingSpa===null?'DATA NOT PROVIDED':`${fmtNumber(bookingSpa,1)}%`);
+        setText('leadSpaRate',leadSpa===null?'DATA NOT PROVIDED':`${fmtNumber(leadSpa,1)}%`);
+        return {salesPer,leadBooking,bookingSpa,leadSpa};
+      }
+
+      function calculateCommission(budget) {
+        const price=val('avgSellingPrice');
+        const rate=val('commissionRate');
+        const enteredGross=val('grossCommissionRm');
+        const gross=enteredGross!==null ? enteredGross : (price!==null&&rate!==null ? price*rate/100 : null);
+        const splits=['agencySplit','teamSplit','consultantSplit'].map(val);
+        const deduction=val('otherDeductions');
+        const marketingDeduction=val('marketingDeduction');
+        const net=gross!==null&&splits.every(value=>value!==null)&&deduction!==null&&marketingDeduction!==null
+          ? gross*splits.reduce((factor,value)=>factor*value/100,1)-deduction-marketingDeduction : null;
+        setText('grossCommissionCalc',gross===null?'Gross belum cukup data':`Gross: ${fmtRM(gross)}`);
+        setText('netCommissionUnit',asRM(net));
+        const tbody=document.getElementById('commissionScenarios');
+        tbody.innerHTML=[1,2,3,5].map(units=>`<tr><td>${units} unit</td><td>${gross===null?'INSUFFICIENT DATA':fmtRM(gross*units)}</td><td>${net===null?'INSUFFICIENT DATA':fmtRM(net*units)}</td></tr>`).join('');
+        const costs=['costPetrol','costParking','costPhone','costMarketing','costOther'].map(val);
+        const units=val('expectedUnits');
+        const cashflow=net!==null&&units!==null&&costs.every(value=>value!==null) ? net*units-costs.reduce((sum,value)=>sum+value,0) : null;
+        setText('netCashflow',asRM(cashflow));
+        return {gross,net,cashflow,price,rate};
+      }
+
+      function calculateAcquisition(leads,budget,commission) {
+        const qualified=val('qualifiedLeads');
+        const bookings=val('acquisitionBookings');
+        const customers=val('acquisitionCustomers');
+        const extra=val('additionalAcqCost');
+        const totalCost=budget.total!==null&&extra!==null ? budget.total+extra : null;
+        const cpl=budget.total!==null&&leads.all!==null&&leads.all>0 ? budget.total/leads.all : null;
+        const cpql=budget.total!==null&&qualified!==null&&qualified>0 ? budget.total/qualified : null;
+        const costBooking=budget.total!==null&&bookings!==null&&bookings>0 ? budget.total/bookings : null;
+        const cac=totalCost!==null&&customers!==null&&customers>0 ? totalCost/customers : null;
+        const commissionCustomer=commission.net;
+        const contribution=cac!==null&&commissionCustomer!==null ? commissionCustomer-cac : null;
+        [['cplResult',cpl],['cpqlResult',cpql],['costBookingResult',costBooking],['cacResult',cac],['commissionCustomerResult',commissionCustomer],['contributionResult',contribution]].forEach(([id,value])=>setText(id,asRM(value)));
+        return {cpl,cpql,costBooking,cac,commissionCustomer,contribution,totalCost};
+      }
+
+      function renderList(id,items,emptyText) {
+        const list=document.getElementById(id);
+        list.replaceChildren();
+        if(!items.length) { const li=document.createElement('li'); li.className='empty'; li.textContent=emptyText; list.append(li); return; }
+        items.forEach(text=>{const li=document.createElement('li');li.textContent=text;list.append(li);});
+      }
+
+      function selectedRedFlags() {
+        return redFlags.filter((_,index)=>document.getElementById(`red-flag-${index}`)?.checked);
+      }
+
+      function updateVerifyList() {
+        const selected=selectedRedFlags();
+        setText('redFlagCount',String(selected.length));
+        const list=document.getElementById('verifyList');
+        list.replaceChildren();
+        if(!selected.length) { const item=document.createElement('li'); item.textContent='Belum ada item ditanda.'; list.append(item); return; }
+        selected.forEach(text=>{const item=document.createElement('li');item.textContent=text;list.append(item);});
+      }
+
+      function sectionHasData(section) {
+        return [...section.querySelectorAll(`[${savedAttrs}]`)].some(element => element.type==='checkbox' ? element.checked : element.value.trim()!=='');
+      }
+
+      function updateProgress() {
+        const completed=sections.filter(sectionHasData).length;
+        setText('progressText',`${completed} / ${sections.length}`);
+        document.getElementById('progressFill').style.width=`${completed/sections.length*100}%`;
+      }
+
+      function updateAnalysis() {
+        const leads=calculateLeads();
+        const budget=calculateMarketingBudget();
+        const commission=calculateCommission(budget);
+        const performance=calculatePerformance();
+        const acq=calculateAcquisition(leads,budget,commission);
+        const project=calculateProject();
+        const funnel=calculateFunnel();
+        updateVerifyList();
+
+        const known=[];
+        const addKnown=(label,id)=>{const value=val(id);if(value!==null)known.push(`${label}: ${typeof value==='number'?fmtNumber(value):value}`);};
+        [['Nama wakil','representativeName'],['Jawatan','representativeRole'],['Team','teamName'],['Project','projectName'],['Developer','developerName'],['Phase','projectPhase'],['Harga jualan','sellingPrice'],['Jumlah unit','totalUnits'],['Unit terjual','unitsSold'],['Unit berbaki','unitsRemaining'],['Sumber info project','projectInfoSource'],['Nama CRM','crmName'],['Demo CRM','crmDemo'],['Sumber update','infoChannel'],['Tempoh update','updateFrequency'],['Tempoh data prestasi','performanceSource'],['Tempoh data acquisition','acqPeriod'],['Tempoh bayaran komisen','paymentPeriod']].forEach(([label,id])=>addKnown(label,id));
+        if(leads.all!==null)known.push(`Jumlah lead channel yang dimasukkan: ${fmtNumber(leads.all)} / bulan`);
+        if(commission.net!==null)known.push(`Anggaran net commission / unit: ${fmtRM(commission.net)}`);
+        if(performance.leadBooking!==null)known.push(`Lead → booking: ${fmtNumber(performance.leadBooking,1)}%`);
+
+        const missing=[];
+        const missingField=(label,ids)=>{if(ids.some(id=>!hasValue(id)))missing.push(label);};
+        missingField('Bukti stok, unit terjual dan baki unit',['totalUnits','unitsSold','unitsRemaining']);
+        missingField('Data lead mengikut source, fresh / old dan allocation',sourceOptions.flatMap((_,index)=>[`lead-${index}-count`,`lead-${index}-age`,`lead-${index}-payer`]));
+        missingField('Nama CRM, demonstrasi dan ciri tracking',['crmName','crmDemo','crmTracking','crmLeadAging']);
+        missingField('Channel maklumat project dan freshness update',['infoChannel','updateFrequency','updateSource']);
+        missingField('Prestasi lead → booking → SPA dengan tempoh data',['leads3m','bookings3m','spa3m','performanceSource']);
+        missingField('Jadual split, potongan dan payment period',['grossCommissionRm','agencySplit','teamSplit','consultantSplit','otherDeductions','marketingDeduction','paymentPeriod']);
+        missingField('Marketing spend dan customer count bagi tempoh yang sama',['agencyBudget','teamBudget','developerBudget','consultantBudget','acquisitionCustomers','acqPeriod']);
+        const unverifiedClaims=[...document.querySelectorAll('#evidenceTable tbody tr')].filter(row=>{
+          const claim=val(`${row.dataset.evidenceRow ? `evidence-${row.dataset.evidenceRow}` : ''}-claim`);
+          const verified=val(`${row.dataset.evidenceRow ? `evidence-${row.dataset.evidenceRow}` : ''}-verified`);
+          return claim!==null&&verified!=='yes';
+        }).length;
+        if(unverifiedClaims) missing.push(`${unverifiedClaims} claim belum berstatus verified YES`);
+
+        const red=selectedRedFlags();
+        const verification=[...red];
+        if(project.freshness==='UNKNOWN')verification.push('Sahkan saluran dan tempoh kemas kini stok / promo.');
+        if(val('crmDemo')!=='Yes')verification.push('Minta demonstrasi CRM menggunakan lead dan status sebenar.');
+        if(!hasValue('commissionSource'))verification.push('Minta dokumen struktur komisen, potongan dan trigger pembayaran.');
+        if(val('projectInfoSource')==='Agent'||val('projectInfoSource')==='Observation'||val('projectInfoSource')==='Unknown')verification.push('Sahkan butiran project melalui dokumen rasmi atau developer.');
+        if(project.unitMismatch)verification.push('Semak semula jumlah unit terjual + baki berbanding total units.');
+        const contradictions=[...funnel.issues];
+        if(project.unitMismatch)contradictions.push('Units sold + remaining melebihi total units.');
+        if(contradictions.length)verification.push(...contradictions.map(item=>`Semak percanggahan: ${item}`));
+
+        const economic=[];
+        if(commission.net!==null)economic.push(`Net commission model: ${fmtRM(commission.net)} / unit sebelum kos bulanan peribadi.`);
+        else economic.push('Belum cukup data untuk net commission per unit; split dan potongan belum lengkap.');
+        if(acq.cac!==null&&acq.contribution!==null)economic.push(`CAC ${fmtRM(acq.cac)}; contribution selepas acquisition ${fmtRM(acq.contribution)} / customer berdasarkan input.`);
+        else economic.push('CPL, CAC dan contribution margin hanya akan terhasil apabila kos dan bilangan conversion bagi tempoh sama tersedia.');
+        if(commission.cashflow!==null)economic.push(`Cashflow estimate pada senario unit yang diisi: ${fmtRM(commission.cashflow)} / bulan.`);
+
+        const system=[];
+        const crmName=val('crmName'), demo=val('crmDemo');
+        if(crmName)system.push(`CRM direkodkan sebagai “${crmName}”; sahkan fungsi, owner dan akses consultant.`);
+        if(demo==='Yes')system.push('Demo sistem ditandakan tersedia; uji source, ownership, aging, reminder dan funnel analytics.');
+        else system.push('Integrasi dan automasi belum disahkan melalui demonstrasi sistem.');
+        if(hasValue('crmFollowup'))system.push(`Follow-up yang diterangkan: ${val('crmFollowup')}.`);
+        system.push('Bandingkan lead assigned dengan contacted, qualified, booking dan SPA dalam tempoh yang sama.');
+
+        const opportunities=[];
+        if(val('updateFrequency')==='realtime'||val('updateFrequency')==='same-day')opportunities.push('Kemas kini pantas boleh menyokong respons buyer, jika boleh ditunjukkan dan konsisten.');
+        if(val('crmDemo')==='Yes')opportunities.push('Demo CRM memberi peluang menguji aliran lead dan mengenal pasti ruang penambahbaikan.');
+        if(val('closingSupportAnswer'))opportunities.push('Support closing yang dinyatakan boleh dinilai melalui proses dan contact person.');
+        if(!opportunities.length)opportunities.push('Belum ada opportunity khusus yang boleh disimpulkan daripada input semasa.');
+
+        const followups=[];
+        actions.forEach((action,index)=>{if(document.getElementById(`next-action-${index}`)?.checked)followups.push(action);});
+        if(selectedRedFlags().length)followups.push('Tutup item verification yang ditanda sebelum perbandingan akhir.');
+        if(!followups.length)followups.push('Pilih next actions berdasarkan gap data dan keperluan meeting.');
+
+        renderList('knownList',known,'Belum ada fakta meeting direkodkan.');
+        renderList('unknownList',missing,'Input penting yang diperiksa sudah diisi; sahkan sumber dan tempoh data.');
+        renderList('verifyAnalysisList',verification,'Tiada item verification dikenal pasti daripada peraturan semasa. Semak secara manual.');
+        renderList('riskList',red.length?red:contradictions,'Tiada red flag ditanda atau percanggahan numerik dikesan. Ini bukan bukti bahawa risiko tiada.');
+        renderList('opportunityList',opportunities,'Belum ada maklumat yang mencukupi.');
+        renderList('economicList',economic,'Belum ada input ekonomi.');
+        renderList('systemList',system,'Belum ada input sales-system.');
+        renderList('followupList',followups,'Belum ada follow-up.');
+        updateProgress();
+        return {known,missing,verification,red,contradictions,economic,system,opportunities,followups,leads,budget,commission,performance,acq,project};
+      }
+
+      function fieldLabel(element) {
+        const label=document.querySelector(`label[for="${CSS.escape(element.id)}"]`);
+        if(label) return label.textContent.trim();
+        const cell=element.closest('tr')?.querySelector('td:first-child');
+        if(cell) return `${cell.textContent.trim()} · ${element.getAttribute('aria-label') || element.previousElementSibling?.textContent || element.id}`;
+        return element.id.replace(/[-_]/g,' ');
+      }
+
+      function exportSummary() {
+        const analysis=updateAnalysis();
+        const payload={
+          title:'Meeting Intelligence · Affirm Plus × Scientex Jenjarom',
+          exportedAt:new Date().toISOString(),
+          meeting:{date:val('meetingDate'),representative:val('representativeName'),role:val('representativeRole'),team:val('teamName')},
+          inputs:[...document.querySelectorAll(`[${savedAttrs}]`)].map(element=>({
+            id:element.id,label:fieldLabel(element),value:element.type==='checkbox'?element.checked:element.value,
+            category:element.closest('[data-section]')?.id || 'meeting'
+          })),
+          calculations:{
+            leads:analysis.leads,marketingBudget:analysis.budget,performance:analysis.performance,
+            commission:{gross:analysis.commission.gross,netPerUnit:analysis.commission.net,cashflow:analysis.commission.cashflow},
+            acquisition:analysis.acq
+          },
+          analysis:{known:analysis.known,unknown:analysis.missing,verification:analysis.verification,risks:analysis.red,contradictions:analysis.contradictions,opportunities:analysis.opportunities,followups:analysis.followups},
+          note:'Analisis tempatan berasaskan peraturan; bukan keputusan automatik.'
+        };
+        const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+        const url=URL.createObjectURL(blob);
+        const link=document.createElement('a');
+        link.href=url; link.download=`scientex-meeting-${val('meetingDate')||'notes'}.json`;
+        document.body.append(link); link.click(); link.remove(); URL.revokeObjectURL(url);
+        showToast('Ringkasan JSON telah dimuat turun.');
+      }
+
+      function showToast(message) {
+        const toast=document.getElementById('toast');
+        toast.textContent=message; toast.classList.add('is-visible');
+        clearTimeout(toastTimer); toastTimer=setTimeout(()=>toast.classList.remove('is-visible'),2600);
+      }
+
+      function setActiveSection(section,scroll=false) {
+        if(!section) return;
+        sections.forEach(item=>item.classList.toggle('is-active',item===section));
+        const index=sections.indexOf(section);
+        navigationLinks.forEach(link=>{
+          const active=link.hash===`#${section.id}`;
+          if(active) link.setAttribute('aria-current','location'); else link.removeAttribute('aria-current');
+        });
+        const details=section.querySelector('details');
+        if(details)details.open=true;
+        const sectionName=section.querySelector('.section-title strong')?.textContent || section.querySelector('h2')?.textContent || 'Objektif pertemuan';
+        setText('meetingStepLabel',`Bahagian ${index+1} daripada ${sections.length} · ${sectionName}`);
+        document.getElementById('previousSection').disabled=index===0;
+        document.getElementById('nextSection').disabled=index===sections.length-1;
+        if(scroll) section.scrollIntoView({behavior:'smooth',block:'start'});
+      }
+
+      function initNavigation() {
+        navigationLinks.forEach(link=>link.addEventListener('click',()=>{
+          const section=document.querySelector(link.hash);
+          setActiveSection(section,false);
+          if(document.body.classList.contains('meeting-mode')) setTimeout(()=>section?.scrollIntoView({behavior:'smooth',block:'start'}),0);
+        }));
+        const observer=new IntersectionObserver(entries=>{
+          const visible=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+          if(visible&&!document.body.classList.contains('meeting-mode')) {
+            const link=navigationLinks.find(item=>item.hash===`#${visible.target.id}`);
+            navigationLinks.forEach(item=>item.removeAttribute('aria-current'));
+            link?.setAttribute('aria-current','location');
+          }
+        },{rootMargin:'-18% 0px -68% 0px',threshold:[0,.1,.25]});
+        sections.forEach(section=>observer.observe(section));
+        navigationLinks.forEach(link=>link.addEventListener('click',()=>{
+          if(link.hash==='#objective') document.getElementById('objective').scrollIntoView({behavior:'smooth',block:'start'});
+        }));
+      }
+
+      function setMeetingMode(enabled) {
+        document.body.classList.toggle('meeting-mode',enabled);
+        document.getElementById('meetingModeButton').setAttribute('aria-pressed',String(enabled));
+        document.getElementById('meetingControls').classList.toggle('is-visible',enabled);
+        if(enabled) {
+          const hashTarget=location.hash ? document.querySelector(location.hash) : null;
+          const section=hashTarget?.matches('[data-section]')?hashTarget:sections.find(item=>item.classList.contains('is-active'))||sections[0];
+          setActiveSection(section,true);
+        } else {
+          sections.forEach(section=>section.classList.remove('is-active'));
+        }
+      }
+
+      function init() {
+        renderLeadRows(); renderFunnel(); renderQuestions(); renderMarketing(); renderCompetitors();
+        renderEvidenceRows(); renderBenchmark(); renderDecisions();
+        renderChoices('liveDataChecks',liveDataItems,'live-data');
+        renderChoices('supportChecks',supportItems,'support');
+        renderChecklist('redFlagChecks',redFlags,'red-flag','red-flag-list');
+        renderChecklist('nextActionChecks',actions,'next-action');
+        restore();
+        updateAnalysis();
+        initNavigation();
+
+        document.addEventListener('input',event=>{
+          if(event.target.matches(`[${savedAttrs}]`)) { persist(); updateAnalysis(); }
+        });
+        document.addEventListener('change',event=>{
+          if(event.target.matches(`[${savedAttrs}]`)) { persist(); updateAnalysis(); }
+        });
+        document.getElementById('meetingModeButton').addEventListener('click',event=>setMeetingMode(event.currentTarget.getAttribute('aria-pressed')!=='true'));
+        document.getElementById('previousSection').addEventListener('click',()=>{
+          const index=sections.findIndex(section=>section.classList.contains('is-active'));
+          if(index>0)setActiveSection(sections[index-1],true);
+        });
+        document.getElementById('nextSection').addEventListener('click',()=>{
+          const index=sections.findIndex(section=>section.classList.contains('is-active'));
+          if(index>=0&&index<sections.length-1)setActiveSection(sections[index+1],true);
+        });
+        document.getElementById('exportButton').addEventListener('click',exportSummary);
+        document.getElementById('printButton').addEventListener('click',()=>window.print());
+        document.getElementById('analyzeButton').addEventListener('click',()=>{updateAnalysis();showToast('Nota dianalisis berdasarkan data yang tersedia.');});
+        document.getElementById('resetButton').addEventListener('click',()=>{
+          if(!window.confirm('Kosongkan semua data meeting yang tersimpan dalam browser ini?'))return;
+          localStorage.removeItem(STORAGE_KEY); window.location.reload();
+        });
+        document.getElementById('addEvidenceRow').addEventListener('click',()=>{
+          if(evidenceRowCount>=30){showToast('Had 30 baris claim.');return;}
+          document.querySelector('#evidenceTable tbody').append(renderEvidenceRow(evidenceRowCount));
+          evidenceRowCount++; persist(); updateAnalysis();
+        });
+        document.getElementById('evidenceTable').addEventListener('click',event=>{
+          const button=event.target.closest('[data-remove-evidence]');
+          if(!button)return;
+          const row=button.closest('tr');
+          const index=Number(row.dataset.evidenceRow);
+          row.remove();
+          const remaining=[...document.querySelectorAll('#evidenceTable tbody tr')];
+          remaining.forEach((item,nextIndex)=>{
+            item.dataset.evidenceRow=String(nextIndex);
+            item.querySelectorAll('[id]').forEach(element=>{
+              element.id=element.id.replace(/evidence-\d+-/,`evidence-${nextIndex}-`);
+              if(element.tagName==='SELECT') return;
+            });
+            const remove=item.querySelector('[data-remove-evidence]');
+            if(remove)remove.dataset.removeEvidence=String(nextIndex);
+          });
+          evidenceRowCount=remaining.length;
+          persist(); updateAnalysis();
+        });
+      }
+
+      init();
+    })();
+  </script>
+</body>
+</html>
