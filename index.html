@@ -1,0 +1,669 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071a33">
+  <meta name="description" content="Independent Property Project Consultant specialising in property intelligence, project sales, buyer insight and digital customer acquisition across Selangor and Kuala Lumpur.">
+  <title>Mohd Khalil Saba | Independent Property Project Consultant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --navy: #071a33;
+      --blue: #0b5ed7;
+      --accent: #2f80ed;
+      --soft-blue: #eaf3ff;
+      --paper: #f7f9fc;
+      --white: #fff;
+      --ink: #111827;
+      --muted: #64748b;
+      --border: #dce3ec;
+      --line-dark: rgba(204, 222, 246, .17);
+      --container: 1180px;
+      --header-height: 78px;
+      --font: 'Manrope', 'Segoe UI', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-height) + 20px); }
+    body { margin: 0; background: var(--white); color: var(--ink); font-family: var(--font); font-size: 15px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    body.menu-open { overflow: hidden; }
+    a { color: inherit; text-decoration: none; }
+    button { color: inherit; font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button:focus-visible, a:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+    img, svg { max-width: 100%; }
+    .container { width: min(var(--container), calc(100% - 48px)); margin-inline: auto; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; margin: 0 0 18px; color: var(--blue); font-size: 11px; font-weight: 800; letter-spacing: .12em; line-height: 1.3; text-transform: uppercase; }
+    .eyebrow::before { width: 22px; height: 1px; background: currentColor; content: ''; }
+    .eyebrow--light { color: #8abaff; }
+    .section { padding: 112px 0; }
+    .section--paper { background: var(--paper); }
+    .section--blue { background: var(--soft-blue); }
+    .section--dark { position: relative; overflow: hidden; background: var(--navy); color: var(--white); }
+    .section-heading { max-width: 760px; margin-bottom: 54px; }
+    .section-heading h2 { max-width: 800px; margin: 0; font-size: clamp(36px, 5.4vw, 62px); font-weight: 700; letter-spacing: -.045em; line-height: 1.08; }
+    .section-heading p { max-width: 610px; margin: 22px 0 0; color: var(--muted); font-size: 16px; }
+    .section--dark .section-heading p { color: #aab8ca; }
+    .button { display: inline-flex; min-height: 52px; align-items: center; justify-content: center; gap: 12px; padding: 0 21px; border: 1px solid transparent; border-radius: 4px; background: var(--blue); color: var(--white); font-size: 11px; font-weight: 800; letter-spacing: .08em; text-align: center; text-transform: uppercase; transition: background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease; }
+    .button:hover { transform: translateY(-2px); background: #084cad; }
+    .button--outline { border-color: rgba(255,255,255,.35); background: transparent; }
+    .button--outline:hover { border-color: var(--white); background: rgba(255,255,255,.08); }
+    .button--light { border-color: var(--border); background: var(--white); color: var(--navy); }
+    .button--light:hover { border-color: var(--blue); background: var(--soft-blue); }
+    .button-arrow { font-size: 16px; line-height: 1; }
+
+    .site-header { position: fixed; z-index: 20; inset: 0 0 auto; height: var(--header-height); border-bottom: 1px solid transparent; color: var(--white); transition: background .25s ease, color .25s ease, box-shadow .25s ease, border-color .25s ease; }
+    .site-header.is-scrolled { border-color: var(--border); background: rgba(255,255,255,.96); color: var(--navy); box-shadow: 0 5px 22px rgba(7,26,51,.07); backdrop-filter: blur(12px); }
+    .nav-shell { display: flex; height: 100%; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: grid; flex: 0 0 auto; gap: 2px; line-height: 1.15; }
+    .brand-name { font-size: 13px; font-weight: 800; letter-spacing: .065em; }
+    .brand-role { color: #97a9c0; font-size: 9px; font-weight: 700; letter-spacing: .14em; }
+    .site-header.is-scrolled .brand-role { color: var(--muted); }
+    .nav-links { display: flex; align-items: center; gap: clamp(18px, 2.6vw, 34px); }
+    .nav-links a:not(.button) { color: inherit; font-size: 10px; font-weight: 800; letter-spacing: .08em; transition: color .2s ease; }
+    .nav-links a:not(.button):hover { color: #80b7ff; }
+    .site-header.is-scrolled .nav-links a:not(.button):hover { color: var(--blue); }
+    .nav-cta { min-height: 42px; gap: 7px; padding-inline: 10px; font-size: 8px; white-space: nowrap; }
+    .menu-toggle { display: none; width: 44px; height: 44px; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,.3); border-radius: 4px; background: transparent; color: inherit; cursor: pointer; }
+    .site-header.is-scrolled .menu-toggle { border-color: var(--border); }
+    .menu-toggle svg { width: 20px; height: 20px; }
+
+    .hero { position: relative; min-height: 780px; min-height: max(780px, 94svh); overflow: hidden; padding: calc(var(--header-height) + 86px) 0 70px; background: var(--navy); color: var(--white); }
+    .hero::before { position: absolute; inset: 0; background-image: linear-gradient(rgba(150,190,240,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(150,190,240,.035) 1px, transparent 1px); background-size: 64px 64px; content: ''; mask-image: linear-gradient(90deg, transparent, #000 48%, #000); pointer-events: none; }
+    .hero::after { position: absolute; top: -220px; right: -180px; width: 700px; height: 700px; border: 1px solid rgba(47,128,237,.12); border-radius: 50%; box-shadow: 0 0 0 75px rgba(47,128,237,.025), 0 0 0 150px rgba(47,128,237,.02); content: ''; pointer-events: none; }
+    .hero-layout { position: relative; z-index: 1; display: grid; min-height: 560px; align-items: center; grid-template-columns: 1.2fr .8fr; gap: 42px; }
+    .hero-copy { position: relative; z-index: 2; max-width: 650px; padding: 24px 0; }
+    .hero .eyebrow { margin-bottom: 24px; }
+    .hero h1 { margin: 0; font-size: clamp(50px, 5.1vw, 76px); font-weight: 700; letter-spacing: -.055em; line-height: .99; }
+    .hero h1 span { display: block; }
+    .hero h1 .hero-break { margin-top: 20px; color: #79afff; }
+    .hero-description { max-width: 570px; margin: 26px 0 25px; color: #b4c1d2; font-size: 15px; line-height: 1.8; }
+    .hero-signature { display: grid; gap: 3px; margin: 0 0 25px; }
+    .hero-signature strong { font-size: 11px; letter-spacing: .1em; }
+    .hero-signature span { color: #8fa2bb; font-size: 10px; font-weight: 700; letter-spacing: .13em; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .system-visual { position: relative; min-height: 505px; border: 1px solid rgba(183,211,246,.17); border-radius: 5px; background: linear-gradient(145deg, rgba(18,48,84,.75), rgba(7,26,51,.18)); box-shadow: 0 28px 80px rgba(0,0,0,.16); }
+    .visual-topline { position: absolute; top: 22px; right: 24px; left: 24px; display: flex; justify-content: space-between; color: #8095b0; font-size: 9px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+    .visual-live { display: inline-flex; align-items: center; gap: 7px; color: #a7caff; }
+    .visual-live::before { width: 6px; height: 6px; border-radius: 50%; background: #51a1ff; box-shadow: 0 0 12px #51a1ff; content: ''; }
+    .system-map { position: absolute; inset: 66px 29px 31px; }
+    .system-map svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+    .system-map path { fill: none; stroke: rgba(91,157,242,.55); stroke-dasharray: 4 7; stroke-width: 1.4; vector-effect: non-scaling-stroke; }
+    .system-map .loop-path { stroke: rgba(91,157,242,.36); }
+    .map-node { position: absolute; z-index: 2; display: flex; min-height: 44px; align-items: center; gap: 10px; padding: 0 13px; border: 1px solid rgba(158,192,235,.25); border-radius: 3px; background: rgba(7,26,51,.92); color: #d9e8fb; font-size: 9px; font-weight: 800; letter-spacing: .1em; white-space: nowrap; }
+    .map-node::before { width: 7px; height: 7px; border: 1px solid #6eb0ff; border-radius: 50%; background: #0b5ed7; box-shadow: 0 0 12px rgba(73,151,255,.8); content: ''; }
+    .map-node--project { top: 1%; left: 50%; transform: translateX(-50%); }
+    .map-node--market { top: 17%; left: 4%; }
+    .map-node--buyer { top: 17%; right: 4%; }
+    .map-node--marketing { top: 37%; left: 50%; transform: translateX(-50%); }
+    .map-node--lead { top: 57%; left: 4%; }
+    .map-node--sales { top: 57%; right: 4%; }
+    .map-node--feedback { top: 78%; left: 50%; transform: translateX(-50%); border-color: rgba(93,164,255,.65); background: rgba(11,94,215,.2); color: #fff; }
+    .map-index { position: absolute; right: 7px; bottom: 5px; color: rgba(169,196,229,.42); font-size: 8px; letter-spacing: .08em; }
+    .visual-caption { position: absolute; right: 20px; bottom: 16px; left: 20px; display: flex; justify-content: space-between; color: #7388a3; font-size: 8px; letter-spacing: .1em; text-transform: uppercase; }
+
+    .problem-intro { display: grid; grid-template-columns: 1fr .72fr; align-items: end; gap: 60px; margin-bottom: 46px; }
+    .problem-intro .section-heading { margin: 0; }
+    .problem-intro .side-note { max-width: 335px; margin: 0 0 8px; color: var(--muted); font-size: 15px; }
+    .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--border); border-left: 1px solid var(--border); }
+    .problem-item { display: flex; min-height: 108px; align-items: center; gap: 15px; padding: 19px 22px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--white); }
+    .problem-mark { display: grid; width: 28px; height: 28px; flex: 0 0 28px; place-items: center; border: 1px solid #c8dcf7; border-radius: 50%; color: var(--blue); font-size: 15px; }
+    .problem-item span:last-child { font-size: 11px; font-weight: 800; letter-spacing: .065em; line-height: 1.45; }
+    .problem-close { display: flex; align-items: center; justify-content: space-between; gap: 28px; margin-top: 34px; padding: 25px 30px; background: var(--navy); color: var(--white); }
+    .problem-close strong { max-width: 620px; font-size: clamp(19px, 2.8vw, 30px); letter-spacing: -.035em; line-height: 1.2; }
+    .problem-close span { color: #88b9ff; font-size: 10px; font-weight: 800; letter-spacing: .12em; text-align: right; text-transform: uppercase; }
+
+    .approach-layout { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .intelligence-item { min-height: 166px; padding: 23px 21px; border: 1px solid rgba(11,94,215,.16); background: rgba(255,255,255,.7); }
+    .intelligence-item span { color: var(--blue); font-size: 10px; font-weight: 800; letter-spacing: .12em; }
+    .intelligence-item h3 { margin: 17px 0 7px; font-size: 15px; }
+    .intelligence-item p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
+    .approach-panel { padding: 34px; border: 1px solid rgba(11,94,215,.15); border-radius: 4px; background: rgba(255,255,255,.55); }
+    .approach-panel--lead { border-color: var(--navy); background: var(--navy); color: var(--white); box-shadow: 0 20px 45px rgba(7,26,51,.12); }
+    .approach-label { display: block; margin-bottom: 26px; color: var(--muted); font-size: 10px; font-weight: 800; letter-spacing: .12em; }
+    .approach-panel--lead .approach-label { color: #83b6ff; }
+    .approach-steps { display: grid; gap: 0; }
+    .approach-step { position: relative; display: flex; min-height: 49px; align-items: center; gap: 13px; font-size: 11px; font-weight: 700; }
+    .approach-step:not(:last-child)::after { position: absolute; top: calc(50% + 12px); left: 10px; width: 1px; height: 25px; background: #b7d2f5; content: ''; }
+    .approach-panel--lead .approach-step:not(:last-child)::after { background: rgba(119,177,255,.55); }
+    .approach-step i { display: grid; width: 21px; height: 21px; flex: 0 0 21px; place-items: center; border: 1px solid #9fc6f7; border-radius: 50%; color: var(--blue); font-size: 9px; font-style: normal; }
+    .approach-panel--lead .approach-step i { border-color: #5ca1ff; background: rgba(11,94,215,.2); color: #a9ceff; }
+    .approach-panel--lead .approach-step { min-height: 45px; font-size: 12px; }
+    .approach-conclusion { margin-top: 50px; padding-top: 32px; border-top: 1px solid rgba(11,94,215,.16); text-align: center; }
+    .approach-conclusion p { margin: 0; font-size: clamp(20px, 3.2vw, 35px); font-weight: 700; letter-spacing: -.04em; line-height: 1.22; }
+    .approach-conclusion strong { display: block; margin-top: 6px; color: var(--blue); }
+
+    .capability-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .capability-card { position: relative; min-height: 238px; padding: 28px 25px; border: 1px solid var(--border); border-radius: 4px; background: var(--white); transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+    .capability-card:hover { transform: translateY(-4px); border-color: #9dc4f5; box-shadow: 0 16px 38px rgba(16,55,103,.08); }
+    .capability-number { color: var(--blue); font-size: 10px; font-weight: 800; letter-spacing: .12em; }
+    .capability-card h3 { margin: 18px 0 15px; font-size: 17px; letter-spacing: -.025em; }
+    .capability-card p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.75; }
+    .capability-card .capability-rule { position: absolute; right: 24px; bottom: 22px; left: 24px; height: 1px; background: linear-gradient(90deg, var(--blue), transparent); opacity: .45; }
+
+    .system-section { background-image: radial-gradient(ellipse at 82% 40%, rgba(11,94,215,.17), transparent 44%); }
+    .funnel-layout { display: grid; grid-template-columns: .9fr 1.1fr; align-items: center; gap: 70px; }
+    .funnel-copy h2 { max-width: 440px; margin: 0; font-size: clamp(38px, 5.2vw, 60px); letter-spacing: -.05em; line-height: 1.08; }
+    .funnel-copy p { max-width: 460px; margin: 25px 0 0; color: #aab8ca; font-size: 15px; }
+    .funnel-quote { margin-top: 34px; padding-left: 18px; border-left: 2px solid var(--accent); color: #e9f2ff; font-size: 14px; font-weight: 600; line-height: 1.7; }
+    .funnel { position: relative; display: grid; grid-template-columns: 1fr; gap: 5px; max-width: 450px; margin-inline: auto; }
+    .funnel::before { position: absolute; top: 20px; bottom: 29px; left: 18px; width: 1px; background: linear-gradient(#387ed3, #1c4e89); content: ''; }
+    .funnel-step { position: relative; display: flex; min-height: 39px; align-items: center; gap: 16px; color: #c6d5e8; font-size: 10px; font-weight: 800; letter-spacing: .11em; }
+    .funnel-step::before { z-index: 1; width: 9px; height: 9px; flex: 0 0 9px; margin-left: 14px; border: 1px solid #76b4ff; border-radius: 50%; background: var(--navy); content: ''; }
+    .funnel-step--feedback { color: #fff; }
+    .funnel-step--feedback::before { border-color: #fff; background: var(--accent); box-shadow: 0 0 0 5px rgba(47,128,237,.2), 0 0 17px rgba(47,128,237,.9); }
+    .funnel-loop { display: flex; align-items: center; gap: 11px; margin: 9px 0 0 39px; color: #86baff; font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+    .funnel-loop svg { width: 34px; height: 34px; overflow: visible; }
+    .funnel-loop path { fill: none; stroke: #4d98f5; stroke-width: 1.5; }
+
+    .comparison-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: 15px; }
+    .comparison-panel { min-height: 260px; padding: 26px; border: 1px solid rgba(180,207,241,.22); background: rgba(255,255,255,.035); }
+    .comparison-panel--intelligence { border-color: rgba(103,165,244,.55); background: rgba(11,94,215,.14); }
+    .comparison-panel h3 { margin: 0 0 21px; color: #9ec8ff; font-size: 10px; letter-spacing: .13em; }
+    .comparison-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; color: #d5e2f2; font-size: 10px; font-weight: 800; }
+    .comparison-flow span { padding: 9px 10px; border: 1px solid rgba(180,207,241,.2); background: rgba(7,26,51,.42); }
+    .comparison-flow b { color: #79afff; font-size: 13px; }
+
+    .partner-grid { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid rgba(192,214,243,.22); border-left: 1px solid rgba(192,214,243,.22); }
+    .partner-item { display: flex; min-height: 104px; align-items: center; gap: 12px; padding: 16px; border-right: 1px solid rgba(192,214,243,.22); border-bottom: 1px solid rgba(192,214,243,.22); color: #d7e3f2; font-size: 11px; font-weight: 700; }
+    .partner-item::before { width: 7px; height: 7px; flex: 0 0 7px; border: 1px solid #7eb7ff; border-radius: 50%; content: ''; }
+    .focus-strip { display: grid; grid-template-columns: .8fr 1.2fr; gap: 42px; align-items: start; }
+    .focus-detail { padding: 28px; border: 1px solid rgba(192,214,243,.22); background: rgba(255,255,255,.035); }
+    .focus-detail h3 { margin: 0 0 14px; color: #9ec8ff; font-size: 11px; letter-spacing: .12em; }
+    .focus-detail p { margin: 0; color: #c3d2e5; font-size: 14px; }
+    .focus-audiences { display: flex; flex-wrap: wrap; gap: 9px; }
+    .focus-audiences span { padding: 9px 12px; border: 1px solid rgba(180,207,241,.24); color: #d7e3f2; font-size: 10px; }
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .why-card { min-height: 205px; padding: 24px; border: 1px solid var(--border); background: #fff; }
+    .why-card span { color: var(--blue); font-size: 10px; font-weight: 800; letter-spacing: .12em; }
+    .why-card h3 { margin: 17px 0 9px; font-size: 16px; }
+    .why-card p { margin: 0; color: var(--muted); font-size: 12px; }
+    .why-statement { margin: 30px 0 0; padding: 23px 26px; border-left: 2px solid var(--blue); background: var(--soft-blue); color: var(--navy); font-size: clamp(19px, 2.6vw, 28px); font-weight: 700; line-height: 1.3; }
+
+    .timeline { position: relative; display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; margin-top: 68px; }
+    .timeline::before { position: absolute; top: 8px; right: 2%; left: 2%; height: 1px; background: #cbd7e5; content: ''; }
+    .timeline-item { position: relative; padding: 34px 18px 0 0; }
+    .timeline-item::before { position: absolute; top: 2px; left: 0; width: 13px; height: 13px; border: 2px solid var(--blue); border-radius: 50%; background: var(--white); content: ''; }
+    .timeline-year { color: var(--blue); font-size: 12px; font-weight: 800; letter-spacing: .08em; }
+    .timeline-item h3 { margin: 12px 0 7px; font-size: 12px; line-height: 1.4; }
+    .timeline-item p { margin: 0; color: var(--muted); font-size: 10px; line-height: 1.6; }
+    .experience-note { max-width: 700px; margin: 48px 0 0 auto; padding-left: 24px; border-left: 1px solid #b5c5d8; color: var(--muted); font-size: 14px; }
+
+    .complement-intro { max-width: 850px; margin-bottom: 46px; }
+    .complement-intro h2 { margin: 0; font-size: clamp(38px, 6vw, 70px); letter-spacing: -.055em; line-height: .99; }
+    .complement-intro h2 span { display: block; margin-top: 12px; color: #81b8ff; }
+    .complement-grid { display: grid; grid-template-columns: 1fr 54px 1fr 54px 1fr; align-items: stretch; gap: 14px; }
+    .complement-column { min-height: 295px; padding: 27px 24px; border: 1px solid rgba(180,207,241,.2); border-radius: 4px; background: rgba(255,255,255,.035); }
+    .complement-column--khalil { border-color: rgba(103,165,244,.55); background: rgba(11,94,215,.14); }
+    .complement-column--result { display: flex; flex-direction: column; justify-content: center; border-color: rgba(98,163,242,.36); background: rgba(12,58,113,.45); }
+    .complement-column h3 { margin: 0 0 22px; color: #9ec8ff; font-size: 10px; letter-spacing: .14em; }
+    .complement-column--result h3 { color: #fff; font-size: 14px; line-height: 1.4; }
+    .complement-column ul { display: grid; gap: 12px; margin: 0; padding: 0; color: #c5d2e2; font-size: 11px; list-style: none; }
+    .complement-column li::before { margin-right: 9px; color: #64a8ff; content: '+'; }
+    .complement-symbol { display: grid; align-self: center; width: 42px; height: 42px; place-items: center; border: 1px solid rgba(130,184,248,.35); border-radius: 50%; color: #9ec8ff; font-size: 22px; font-weight: 400; }
+    .complement-column--result p { margin: 0; color: #aebed2; font-size: 12px; }
+    .complement-column--result .result-line { width: 35px; height: 2px; margin: 21px 0; background: var(--accent); }
+
+    .outcomes-heading { max-width: 730px; }
+    .outcome-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--border); border-left: 1px solid var(--border); }
+    .outcome-card { display: flex; min-height: 195px; flex-direction: column; justify-content: space-between; padding: 20px 18px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); background: #fff; }
+    .outcome-card span { color: #8aa1bc; font-size: 10px; font-weight: 800; }
+    .outcome-card h3 { max-width: 180px; margin: auto 0 0; font-size: 14px; letter-spacing: -.025em; line-height: 1.35; }
+    .outcome-card p { margin: 10px 0 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
+    .outcome-note { display: flex; align-items: center; gap: 15px; margin-top: 25px; color: var(--blue); font-size: 13px; font-weight: 800; }
+    .outcome-note::before { width: 27px; height: 1px; background: currentColor; content: ''; }
+
+    .evidence-grid { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid rgba(192,214,243,.22); border-left: 1px solid rgba(192,214,243,.22); }
+    .evidence-card { min-height: 220px; padding: 24px 20px; border-right: 1px solid rgba(192,214,243,.22); border-bottom: 1px solid rgba(192,214,243,.22); }
+    .evidence-card span { color: #7e9bbc; font-size: 9px; font-weight: 800; letter-spacing: .14em; }
+    .evidence-card h3 { margin: 28px 0 12px; color: #f4f8ff; font-size: 17px; letter-spacing: -.03em; line-height: 1.3; }
+    .evidence-card p { margin: 0; color: #aab8ca; font-size: 11px; line-height: 1.7; }
+    .evidence-card--anchor h3 { color: #83b9ff; font-size: 20px; }
+    .evidence-footnote { margin: 18px 0 0; color: #8d9fb5; font-size: 10px; }
+
+    .final-pitch { position: relative; overflow: hidden; padding: 110px 0 104px; background: var(--blue); color: var(--white); }
+    .final-pitch::after { position: absolute; top: -310px; right: -120px; width: 710px; height: 710px; border: 1px solid rgba(255,255,255,.22); border-radius: 50%; box-shadow: 0 0 0 70px rgba(255,255,255,.05), 0 0 0 140px rgba(255,255,255,.035); content: ''; }
+    .final-pitch-inner { position: relative; z-index: 1; }
+    .final-pitch .eyebrow { color: #c5ddff; }
+    .final-pitch h2 { max-width: 860px; margin: 0; font-size: clamp(43px, 7.2vw, 82px); letter-spacing: -.06em; line-height: .98; }
+    .final-pitch h2 span { display: block; margin-top: 16px; color: #c5ddff; }
+    .final-pitch p { max-width: 570px; margin: 27px 0 29px; color: #e0edff; font-size: 15px; }
+    .final-pitch .button { background: var(--white); color: var(--navy); }
+    .final-pitch .button:hover { background: #eaf3ff; }
+    .final-pitch .button--outline { border-color: rgba(255,255,255,.55); background: transparent; color: #fff; }
+    .final-pitch .button--outline:hover { background: rgba(255,255,255,.1); }
+
+    .contact-section { padding: 70px 0 42px; background: #fff; }
+    .contact-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 50px; padding-bottom: 52px; border-bottom: 1px solid var(--border); }
+    .contact-name { margin: 0; font-size: 19px; font-weight: 800; letter-spacing: .045em; }
+    .contact-role { margin: 4px 0 20px; color: var(--muted); font-size: 10px; font-weight: 800; letter-spacing: .13em; }
+    .contact-specialties { display: flex; flex-wrap: wrap; gap: 7px 14px; color: #475569; font-size: 11px; }
+    .contact-right { display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; gap: 22px; }
+    .contact-right > p { max-width: 440px; margin: 0; color: var(--muted); font-size: 13px; text-align: right; }
+    .contact-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 9px; }
+    .contact-link { min-width: 115px; min-height: 42px; padding: 0 14px; border: 1px solid var(--border); border-radius: 3px; background: #fff; color: var(--navy); cursor: pointer; font-size: 9px; font-weight: 800; letter-spacing: .09em; transition: border-color .2s, color .2s, background .2s; }
+    .contact-link:hover { border-color: var(--blue); background: var(--soft-blue); color: var(--blue); }
+    .contact-status { min-height: 22px; margin: 12px 0 0; color: var(--blue); font-size: 11px; text-align: right; }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 25px; color: #758195; font-size: 9px; font-weight: 700; letter-spacing: .06em; }
+    .footer-bottom a { color: var(--navy); }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .65s ease, transform .65s cubic-bezier(.2,.65,.25,1); }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .08s; }
+    .reveal-delay-2 { transition-delay: .16s; }
+    .reveal-delay-3 { transition-delay: .24s; }
+    .line-draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw-line 1.4s ease forwards .2s; }
+    @keyframes draw-line { to { stroke-dashoffset: 0; } }
+
+    @media (max-width: 980px) {
+      :root { --header-height: 72px; }
+      .container { width: min(var(--container), calc(100% - 40px)); }
+      .nav-links { gap: 17px; }
+      .nav-links a:not(.button) { font-size: 9px; }
+      .hero-layout { grid-template-columns: 1fr .85fr; gap: 24px; }
+      .system-visual { min-height: 455px; }
+      .system-map { inset-inline: 15px; }
+      .map-node { gap: 7px; padding-inline: 9px; font-size: 8px; }
+      .approach-layout { grid-template-columns: repeat(2, 1fr); }
+      .partner-grid { grid-template-columns: repeat(3, 1fr); }
+      .timeline { grid-template-columns: repeat(5, 1fr); }
+      .outcome-grid, .evidence-grid { grid-template-columns: repeat(3, 1fr); }
+      .outcome-card { min-height: 160px; }
+      .evidence-card { min-height: 190px; }
+      .evidence-card:last-child { grid-column: span 1; }
+    }
+    @media (max-width: 760px) {
+      .section { padding: 82px 0; }
+      .section-heading { margin-bottom: 38px; }
+      .section-heading h2 { font-size: clamp(34px, 9vw, 54px); }
+      .section-heading p { font-size: 14px; }
+      .nav-shell { gap: 10px; }
+      .menu-toggle { display: inline-flex; position: relative; z-index: 2; }
+      .nav-links { position: fixed; inset: var(--header-height) 0 0; display: flex; flex-direction: column; align-items: stretch; gap: 0; padding: 18px 24px 30px; background: var(--navy); color: white; opacity: 0; pointer-events: none; transform: translateY(-8px); transition: opacity .2s, transform .2s; }
+      .site-header.is-scrolled .nav-links { background: white; color: var(--navy); }
+      .nav-links.is-open { opacity: 1; pointer-events: auto; transform: translateY(0); }
+      .nav-links a:not(.button) { padding: 18px 4px; border-bottom: 1px solid rgba(150,180,218,.2); font-size: 11px; }
+      .nav-links .nav-cta { margin-top: 22px; }
+      .hero { min-height: 0; padding: calc(var(--header-height) + 66px) 0 58px; }
+      .hero-layout { min-height: 0; grid-template-columns: 1fr; gap: 43px; }
+      .hero h1 { font-size: clamp(43px, 11vw, 72px); }
+      .hero-description { font-size: 14px; }
+      .system-visual { min-height: 465px; }
+      .system-map { inset: 65px 28px 37px; }
+      .map-node { min-height: 40px; padding-inline: 11px; font-size: 8px; }
+      .visual-caption { font-size: 7px; }
+      .problem-intro { grid-template-columns: 1fr; gap: 18px; margin-bottom: 32px; }
+      .problem-intro .side-note { max-width: 580px; }
+      .problem-grid { grid-template-columns: repeat(2, 1fr); }
+      .problem-item { min-height: 86px; padding: 14px; }
+      .problem-close { align-items: flex-start; flex-direction: column; gap: 13px; padding: 22px; }
+      .problem-close span { text-align: left; }
+      .approach-layout { grid-template-columns: repeat(2, 1fr); }
+      .approach-conclusion { margin-top: 35px; }
+      .capability-grid { grid-template-columns: repeat(2, 1fr); }
+      .capability-card { min-height: 220px; padding: 22px 18px; }
+      .comparison-grid, .focus-strip { grid-template-columns: 1fr; }
+      .comparison-panel { min-height: 0; }
+      .partner-grid { grid-template-columns: repeat(2, 1fr); }
+      .why-grid { grid-template-columns: 1fr; }
+      .timeline { grid-template-columns: 1fr 1fr; gap: 0 18px; margin-top: 42px; }
+      .timeline::before { top: 0; bottom: 0; left: 5px; width: 1px; height: auto; }
+      .timeline-item { min-height: 145px; padding: 0 8px 25px 27px; }
+      .timeline-item::before { top: 3px; left: 0; }
+      .experience-note { margin-top: 20px; }
+      .complement-intro h2 { font-size: clamp(42px, 10vw, 65px); }
+      .outcome-grid, .evidence-grid { grid-template-columns: repeat(2, 1fr); }
+      .outcome-card { min-height: 155px; padding: 16px; }
+      .outcome-card h3 { font-size: 12px; }
+      .evidence-card { min-height: 180px; padding: 19px 16px; }
+      .evidence-card h3 { font-size: 15px; }
+      .final-pitch { padding: 83px 0; }
+      .final-pitch h2 { font-size: clamp(46px, 11vw, 72px); }
+      .contact-layout { grid-template-columns: 1fr; gap: 35px; padding-bottom: 38px; }
+      .contact-right { align-items: flex-start; }
+      .contact-right > p, .contact-status { text-align: left; }
+      .contact-links { justify-content: flex-start; }
+    }
+    @media (max-width: 440px) {
+      .container { width: calc(100% - 34px); }
+      .hero { padding-top: calc(var(--header-height) + 48px); }
+      .hero h1 { font-size: 43px; }
+      .hero-actions { align-items: stretch; flex-direction: column; }
+      .hero-actions .button, .final-pitch .hero-actions .button { width: 100%; }
+      .system-visual { min-height: 400px; }
+      .system-map { inset: 65px 11px 36px; }
+      .map-node { min-height: 37px; gap: 6px; padding-inline: 7px; font-size: 7px; }
+      .map-node::before { width: 6px; height: 6px; }
+      .visual-topline { right: 14px; left: 14px; font-size: 8px; }
+      .visual-caption { right: 12px; left: 12px; font-size: 6px; }
+      .problem-grid { grid-template-columns: 1fr 1fr; }
+      .problem-item { gap: 9px; padding: 12px 10px; }
+      .problem-item span:last-child { font-size: 9px; }
+      .problem-mark { width: 23px; height: 23px; flex-basis: 23px; font-size: 12px; }
+      .capability-grid { grid-template-columns: 1fr; }
+      .capability-card { min-height: 205px; }
+      .timeline { grid-template-columns: 1fr; }
+      .timeline-item { min-height: 118px; }
+      .outcome-grid, .evidence-grid { grid-template-columns: 1fr 1fr; }
+      .outcome-card { min-height: 142px; }
+      .evidence-card { min-height: 170px; }
+      .contact-links { display: grid; width: 100%; grid-template-columns: 1fr 1fr; }
+      .contact-link { width: 100%; min-width: 0; }
+      .footer-bottom { flex-direction: column; gap: 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="container nav-shell">
+      <a class="brand" href="#top" aria-label="Mohd Khalil Saba, home">
+        <span class="brand-name">MOHD KHALIL SABA</span>
+        <span class="brand-role">INDEPENDENT PROPERTY PROJECT CONSULTANT</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation menu">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      </button>
+      <nav class="nav-links" id="primary-navigation" aria-label="Main navigation">
+        <a href="#top">HOME</a>
+        <a href="#approach">INTELLIGENCE</a>
+        <a href="#experience">EXPERIENCE</a>
+        <a href="#capability">CAPABILITIES</a>
+        <a href="#collaboration">COLLABORATION</a>
+        <a href="#contact">CONTACT</a>
+        <a class="button nav-cta" href="#contact">START A CONVERSATION <span class="button-arrow" aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-layout">
+        <div class="hero-copy reveal">
+            <p class="eyebrow eyebrow--light">PROPERTY INTELLIGENCE</p>
+            <h1 id="hero-title"><span>PROPERTY SALES</span><span>NEEDS MORE THAN</span><span>JUST AGENTS.</span></h1>
+            <p class="hero-description">I work at the intersection of property projects, market intelligence, buyer behaviour and sales execution, helping project sales teams turn better information into better action.</p>
+            <div class="hero-signature"><strong>MOHD KHALIL SABA</strong><span>INDEPENDENT PROPERTY PROJECT CONSULTANT</span></div>
+          <div class="hero-actions">
+            <a class="button" href="#experience">EXPLORE MY PROFILE <span class="button-arrow" aria-hidden="true">↓</span></a>
+            <a class="button button--outline" href="#contact">LET'S DISCUSS A PROJECT <span class="button-arrow" aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <div class="system-visual reveal reveal-delay-2" aria-label="Connected property intelligence system: project, market, buyer, marketing, lead, sales and feedback">
+          <div class="visual-topline"><span>Connected intelligence</span><span class="visual-live">System view</span></div>
+          <div class="system-map" aria-hidden="true">
+            <svg viewBox="0 0 440 430" preserveAspectRatio="none">
+              <path class="line-draw" pathLength="1" d="M220 24 L220 71 L90 112 M220 71 L350 112 M90 112 L220 185 M350 112 L220 185 M220 185 L90 269 M220 185 L350 269 M90 269 L220 350 M350 269 L220 350"/>
+              <path class="loop-path line-draw" pathLength="1" d="M220 374 C220 421 409 419 409 302 L409 134 C409 65 359 56 326 75"/>
+              <circle cx="220" cy="24" r="3" fill="#71b2ff"/><circle cx="90" cy="112" r="3" fill="#71b2ff"/><circle cx="350" cy="112" r="3" fill="#71b2ff"/><circle cx="220" cy="185" r="3" fill="#71b2ff"/><circle cx="90" cy="269" r="3" fill="#71b2ff"/><circle cx="350" cy="269" r="3" fill="#71b2ff"/><circle cx="220" cy="350" r="3" fill="#71b2ff"/>
+            </svg>
+            <div class="map-node map-node--project">PROJECT</div>
+            <div class="map-node map-node--market">MARKET</div>
+            <div class="map-node map-node--buyer">BUYER</div>
+            <div class="map-node map-node--marketing">MARKETING</div>
+            <div class="map-node map-node--lead">LEAD</div>
+            <div class="map-node map-node--sales">SALES</div>
+            <div class="map-node map-node--feedback">FEEDBACK</div>
+            <span class="map-index">01 — 07</span>
+          </div>
+          <div class="visual-caption"><span>Insight in motion</span><span>Feedback informs the next move</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="why" aria-labelledby="problem-title">
+      <div class="container">
+        <div class="problem-intro reveal">
+          <div class="section-heading">
+            <p class="eyebrow">01 / THE PROJECT CONTEXT</p>
+            <h2 id="problem-title">A GOOD PROJECT CAN STILL STRUGGLE TO SELL.</h2>
+          </div>
+          <p class="side-note">Good product + wrong market = problem. Performance can be shaped by the buyer, pricing, financing, competition, timing and sales execution.</p>
+        </div>
+        <div class="problem-grid reveal">
+          <div class="problem-item"><span class="problem-mark" aria-hidden="true">↗</span><span>WRONG BUYER PROFILE</span></div>
+          <div class="problem-item"><span class="problem-mark" aria-hidden="true">↗</span><span>UNCLEAR POSITIONING</span></div>
+          <div class="problem-item"><span class="problem-mark" aria-hidden="true">↗</span><span>SLOW RESPONSE</span></div>
+          <div class="problem-item"><span class="problem-mark" aria-hidden="true">↗</span><span>OUTDATED INFORMATION</span></div>
+          <div class="problem-item"><span class="problem-mark" aria-hidden="true">↗</span><span>WEAK FOLLOW-UP</span></div>
+          <div class="problem-item"><span class="problem-mark" aria-hidden="true">↗</span><span>HIGH CUSTOMER ACQUISITION COST</span></div>
+          <div class="problem-item"><span class="problem-mark" aria-hidden="true">↗</span><span>POOR MARKET FEEDBACK</span></div>
+          <div class="problem-item"><span class="problem-mark" aria-hidden="true">↗</span><span>STRONG COMPETITION</span></div>
+        </div>
+        <div class="problem-close reveal"><strong>THE RIGHT QUESTIONS START BEFORE THE LEAD ARRIVES.</strong><span>Market · Product · Buyer · Execution</span></div>
+      </div>
+    </section>
+
+    <section class="section section--blue" id="approach" aria-labelledby="approach-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">02 / PROPERTY INTELLIGENCE</p>
+          <h2 id="approach-title">I DON'T LOOK AT A PROJECT FROM ONE ANGLE.</h2>
+          <p>Project sales make more sense when the market, offer, buyer and sales process are considered together.</p>
+        </div>
+        <div class="approach-layout reveal">
+          <article class="intelligence-item"><span>01 / MARKET</span><h3>Who is actually buying?</h3><p>Observe demand, location and market context.</p></article>
+          <article class="intelligence-item"><span>02 / PRODUCT</span><h3>What problem does it solve?</h3><p>Understand the offer beyond its features.</p></article>
+          <article class="intelligence-item"><span>03 / BUYER</span><h3>Who has a reason to buy?</h3><p>Connect needs, behaviour and decision-making.</p></article>
+          <article class="intelligence-item"><span>04 / PRICE</span><h3>Does the value make sense?</h3><p>Consider pricing in context with the offer.</p></article>
+          <article class="intelligence-item"><span>05 / FINANCING</span><h3>Can the buyer afford it?</h3><p>Factor in eligibility, affordability and financing.</p></article>
+          <article class="intelligence-item"><span>06 / COMPETITION</span><h3>What else is being compared?</h3><p>Look at alternatives and competing supply.</p></article>
+          <article class="intelligence-item"><span>07 / TIMING</span><h3>Is the market ready?</h3><p>Read timing alongside buyer and market signals.</p></article>
+          <article class="intelligence-item"><span>08 / SALES</span><h3>What happens between lead and booking?</h3><p>Examine qualification, follow-up and feedback.</p></article>
+        </div>
+        <div class="approach-conclusion reveal"><p>FROM “HOW DO I SELL THIS UNIT?”</p><strong>TO “WHAT WILL HELP THE RIGHT BUYER MOVE FORWARD?”</strong></div>
+      </div>
+    </section>
+
+    <section class="section section--paper" id="capability" aria-labelledby="capability-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">03 / CAPABILITIES</p>
+          <h2 id="capability-title">WHAT I BRING INTO A PROJECT SALES TEAM</h2>
+          <p>Experience across project sales, buyer conversations, digital acquisition and the operational details that shape execution.</p>
+        </div>
+        <div class="capability-grid">
+          <article class="capability-card reveal"><span class="capability-number">01</span><h3>PROJECT SALES</h3><p>Experience handling property project sales and buyer conversations.</p><span class="capability-rule" aria-hidden="true"></span></article>
+          <article class="capability-card reveal reveal-delay-1"><span class="capability-number">02</span><h3>MARKET INTELLIGENCE</h3><p>Observation of market demand, competition, location and buyer behaviour.</p><span class="capability-rule" aria-hidden="true"></span></article>
+          <article class="capability-card reveal reveal-delay-2"><span class="capability-number">03</span><h3>DIGITAL MARKETING</h3><p>Practical experience with paid advertising and digital customer acquisition.</p><span class="capability-rule" aria-hidden="true"></span></article>
+          <article class="capability-card reveal"><span class="capability-number">04</span><h3>BUYER INTELLIGENCE</h3><p>Understanding buyer objections, affordability, financing and decision-making.</p><span class="capability-rule" aria-hidden="true"></span></article>
+          <article class="capability-card reveal reveal-delay-1"><span class="capability-number">05</span><h3>SALES ANALYSIS</h3><p>A practical view of lead quality, conversion, follow-up and sales performance.</p><span class="capability-rule" aria-hidden="true"></span></article>
+          <article class="capability-card reveal reveal-delay-2"><span class="capability-number">06</span><h3>CONTENT &amp; POSITIONING</h3><p>Translating project information into clear, buyer-focused communication.</p><span class="capability-rule" aria-hidden="true"></span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark system-section" aria-labelledby="system-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow eyebrow--light">04 / THE SALES SYSTEM</p>
+          <h2 id="system-title">MORE THAN LEAD DISTRIBUTION.</h2>
+          <p>Sales feedback can inform the next market, product and marketing decision.</p>
+        </div>
+        <div class="comparison-grid reveal">
+          <article class="comparison-panel"><h3>CONVENTIONAL SALES FLOW</h3><div class="comparison-flow"><span>Lead</span><b aria-hidden="true">→</b><span>Call</span><b aria-hidden="true">→</b><span>Follow-up</span><b aria-hidden="true">→</b><span>Viewing</span><b aria-hidden="true">→</b><span>Booking</span></div></article>
+          <article class="comparison-panel comparison-panel--intelligence"><h3>INTELLIGENCE-LED SALES FLOW</h3><div class="comparison-flow"><span>Market</span><b aria-hidden="true">→</b><span>Product</span><b aria-hidden="true">→</b><span>Buyer</span><b aria-hidden="true">→</b><span>Lead</span><b aria-hidden="true">→</b><span>Qualification</span><b aria-hidden="true">→</b><span>Follow-up</span><b aria-hidden="true">→</b><span>Feedback</span><b aria-hidden="true">→</b><span>Conversion</span><b aria-hidden="true">→</b><span>Market learning</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience" aria-labelledby="experience-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">05 / EXPERIENCE</p>
+          <h2 id="experience-title">EXPERIENCE ACROSS PROPERTY, MARKETING &amp; OPERATIONS.</h2>
+        </div>
+        <div class="timeline reveal">
+          <article class="timeline-item"><span class="timeline-year">2004</span><h3>Property</h3><p>Subsales and rental experience.</p></article>
+          <article class="timeline-item"><span class="timeline-year">LATER</span><h3>Digital / IT</h3><p>Web, systems and digital marketing.</p></article>
+          <article class="timeline-item"><span class="timeline-year">2014–2021</span><h3>Operations</h3><p>Management, finance and operational experience.</p></article>
+          <article class="timeline-item"><span class="timeline-year">2021–2024</span><h3>Property Projects</h3><p>Project management and project sales.</p></article>
+          <article class="timeline-item"><span class="timeline-year">CURRENT</span><h3>Independent Property Project Consultant</h3><p>New project sales and property intelligence.</p></article>
+        </div>
+        <p class="experience-note reveal">Property, digital systems and operations now come together in how I approach project sales, buyer behaviour and market intelligence.</p>
+      </div>
+    </section>
+
+    <section class="section section--dark" id="collaboration" aria-labelledby="complement-title">
+      <div class="container">
+        <div class="complement-intro reveal">
+          <p class="eyebrow eyebrow--light">06 / MUTUAL FIT</p>
+          <h2 id="complement-title">I'M LOOKING FOR THE RIGHT SALES ENVIRONMENT.</h2>
+          <p>Strong collaboration depends on the platform, information and process around the sales team. This is a mutual evaluation.</p>
+        </div>
+        <div class="partner-grid reveal">
+          <div class="partner-item">Strong project support</div><div class="partner-item">Reliable, updated project information</div><div class="partner-item">Effective lead management</div><div class="partner-item">Modern CRM and sales systems</div><div class="partner-item">Active marketing channels</div>
+          <div class="partner-item">Fast communication</div><div class="partner-item">Clear sales processes</div><div class="partner-item">Strong closing support</div><div class="partner-item">Access to real project data</div><div class="partner-item">Performance and collaboration culture</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--paper" aria-labelledby="outcomes-title">
+      <div class="container">
+        <div class="section-heading outcomes-heading reveal">
+          <p class="eyebrow">07 / CONTRIBUTION</p>
+          <h2 id="outcomes-title">POTENTIAL AREAS OF COLLABORATION.</h2>
+        </div>
+        <div class="outcome-grid reveal">
+          <article class="outcome-card"><span>01</span><h3>PROJECT SALES</h3><p>Support buyer acquisition and project conversion.</p></article>
+          <article class="outcome-card"><span>02</span><h3>MARKET FEEDBACK</h3><p>Bring frontline buyer feedback into the sales process.</p></article>
+          <article class="outcome-card"><span>03</span><h3>CONTENT</h3><p>Develop useful, buyer-focused property content.</p></article>
+          <article class="outcome-card"><span>04</span><h3>DIGITAL ACQUISITION</h3><p>Understand and contribute to paid and organic acquisition.</p></article>
+          <article class="outcome-card"><span>05</span><h3>PROJECT INTELLIGENCE</h3><p>Organise market, buyer and competitor observations.</p></article>
+          <article class="outcome-card"><span>06</span><h3>SALES IMPROVEMENT</h3><p>Identify friction between lead generation and booking.</p></article>
+        </div>
+        <div class="outcome-note reveal">Contribution shaped around the project, team and available information.</div>
+      </div>
+    </section>
+
+    <section class="section section--dark" aria-labelledby="evidence-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow eyebrow--light">08 / CURRENT FOCUS</p>
+          <h2 id="evidence-title">NEW PROPERTY PROJECTS.</h2>
+          <p>Property project sales across Selangor and Kuala Lumpur, with buyer understanding grounded in the people a project is meant to serve.</p>
+        </div>
+        <div class="focus-strip reveal">
+          <article class="focus-detail"><h3>REGION</h3><p>Selangor &amp; Kuala Lumpur</p></article>
+          <article class="focus-detail"><h3>BUYER CONTEXT</h3><div class="focus-audiences"><span>First-home buyers</span><span>Young families</span><span>Working professionals</span><span>Selangor / KL commuters</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--paper" aria-labelledby="why-work-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">09 / WHY WORK WITH ME</p>
+          <h2 id="why-work-title">A DIFFERENT KIND OF PROJECT SALES CONSULTANT.</h2>
+        </div>
+        <div class="why-grid reveal">
+          <article class="why-card"><span>01 / PROPERTY EXPERIENCE</span><h3>I understand the buyer conversation.</h3><p>Property experience across subsales, rental and new project sales.</p></article>
+          <article class="why-card"><span>02 / MARKETING EXPERIENCE</span><h3>I understand customer acquisition.</h3><p>Practical context across digital marketing, paid advertising and buyer communication.</p></article>
+          <article class="why-card"><span>03 / ANALYTICAL THINKING</span><h3>I look at the numbers and the process.</h3><p>Market signals, lead quality and sales friction all matter alongside the unit.</p></article>
+        </div>
+        <p class="why-statement reveal">My objective is simple: better information, faster action and stronger sales execution.</p>
+      </div>
+    </section>
+
+    <section class="final-pitch" aria-labelledby="pitch-title">
+      <div class="container final-pitch-inner reveal">
+        <p class="eyebrow">LET'S EXPLORE THE FIT</p>
+        <h2 id="pitch-title">HAVE A PROJECT WORTH EXPLORING?</h2>
+        <p>I'm open to conversations with property agencies, project sales teams and developers looking for experienced project-sales capability combined with market, marketing and buyer intelligence.</p>
+        <div class="hero-actions">
+          <a class="button" href="#contact">START A CONVERSATION <span class="button-arrow" aria-hidden="true">↗</span></a>
+          <a class="button button--outline" href="#experience">VIEW PROFESSIONAL PROFILE <span class="button-arrow" aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact" aria-labelledby="contact-heading">
+      <div class="container">
+        <div class="contact-layout">
+          <div>
+            <p class="eyebrow">LET'S TALK</p>
+            <h2 class="contact-name" id="contact-heading">MOHD KHALIL SABA</h2>
+            <p class="contact-role">INDEPENDENT PROPERTY PROJECT CONSULTANT</p>
+            <div class="contact-specialties"><span>Property Intelligence</span><span>Project Sales</span><span>Buyer Insight</span><span>Digital Acquisition</span></div>
+          </div>
+          <div class="contact-right">
+            <p>Open to a conversation with agencies, project sales teams and developers about where this experience could contribute.</p>
+            <div>
+              <div class="contact-links" aria-label="Contact channels">
+                <button class="contact-link" type="button" data-channel="WhatsApp">WHATSAPP · ADD LINK</button>
+                <button class="contact-link" type="button" data-channel="LinkedIn">LINKEDIN · ADD PROFILE</button>
+                <button class="contact-link" type="button" data-channel="Instagram">INSTAGRAM · ADD PROFILE</button>
+                <button class="contact-link" type="button" data-channel="Email">EMAIL · ADD ADDRESS</button>
+              </div>
+              <p class="contact-status" role="status" aria-live="polite"></p>
+            </div>
+          </div>
+        </div>
+        <footer class="footer-bottom"><span>© <span id="current-year"></span> MOHD KHALIL SABA</span><a href="#top">INDEPENDENT PROPERTY PROJECT CONSULTANT</a><span>PROPERTY INTELLIGENCE</span></footer>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const header = document.querySelector('.site-header');
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navigation = document.querySelector('.nav-links');
+    const contactStatus = document.querySelector('.contact-status');
+
+    const updateHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 12);
+    updateHeader();
+    window.addEventListener('scroll', updateHeader, { passive: true });
+
+    const closeMenu = () => {
+      navigation.classList.remove('is-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Open navigation menu');
+      document.body.classList.remove('menu-open');
+    };
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', String(!isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Open navigation menu' : 'Close navigation menu');
+      navigation.classList.toggle('is-open', !isOpen);
+      document.body.classList.toggle('menu-open', !isOpen);
+    });
+
+    navigation.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeMenu();
+    });
+
+    document.querySelectorAll('[data-channel]').forEach((button) => {
+      button.addEventListener('click', () => {
+        contactStatus.textContent = `${button.dataset.channel} contact details have not been added yet.`;
+      });
+    });
+
+    document.querySelector('#current-year').textContent = new Date().getFullYear();
+
+    const revealItems = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealItems.forEach((item) => revealObserver.observe(item));
+    } else {
+      revealItems.forEach((item) => item.classList.add('is-visible'));
+    }
+  </script>
+</body>
+</html>
